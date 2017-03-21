@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  20 MAR 2017 00:27
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  21 MAR 2017 04:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -320,27 +320,42 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 71.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) [1
+
+]
 File: zero.png Graphic file (type QTm)
 
 <use  "zero.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+
+ []
+
 File: one.png Graphic file (type QTm)
- <use  "one.png" >
+<use  "one.png" >
 File: two.png Graphic file (type QTm)
  <use  "two.png" >
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 107.
- [1
 
-] [2] [3]
-(./Lareau_Proposal.aux) ) 
+Overfull \hbox (31.69008pt too wide) in paragraph at lines 111--112
+\OT1/cmr/m/n/10 no-table func-tions/packages that will be ex-am-ined in-clude t
+he \OT1/cmtt/m/n/10 forecast \OT1/cmr/m/n/10 (https://github.com/robjhyndman/fo
+recast)
+ []
+
+[2] [3] (./Lareau_Proposal.aux) ) 
 Here is how much of TeX's memory you used:
- 3226 strings out of 493706
- 43180 string characters out of 6145769
- 102802 words of memory out of 5000000
- 6537 multiletter control sequences out of 15000+600000
- 11699 words of font info for 46 fonts, out of 8000000 for 9000
+ 3220 strings out of 493706
+ 43100 string characters out of 6145769
+ 101802 words of memory out of 5000000
+ 6531 multiletter control sequences out of 15000+600000
+ 11710 words of font info for 46 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 27i,6n,26p,849b,255s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,6n,26p,1517b,256s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Lareau_Proposal.pdf (3 pages).
