@@ -31,26 +31,51 @@ Inferring Cellular Developmental Time
 autosize: true  
 transition-speed: slow
 
-Caleb Lareau<br>
+"From Multivariate to Longitudinal Data"<br><br>April 11, 2017
 
-<div class="footer" style="margin-top:-50px;background-color:transparent;"><SPAN STYLE="font-size:80%;font-weight:bold;">https://bit.ly/LareauBST24/</a><br> April 11, 2017 </SPAN></div>
+<div class="footer" style="margin-top:-50px;background-color:transparent;"><SPAN STYLE="font-size:80%;font-weight:bold;">Caleb Lareau <br>bit.ly/LareauBST245/</a> </SPAN></div>
 
 Overview
 ========================================================
 <br>
-- Statement of Problem
-- Matrix memory allocation
-- File formats
-  - Competing Solutions
-- Implementation
-  - Early results
-- Outlook
+- Motivation
+- Model Dataset
+  - EDA
+- Methods of estimating pseudotime
+  - PCA
+  - Diffusion Components
+  - Gaussian Process Latent Variable Modeling
+- Evaluation of methods in model data setting
 
+
+Statement of problem
+========================================================
+<br>
+<b>Given a matrix of $m$ genes (features) by $n$ samples, compute a vector $n$ x $1$ that:</b>
 
 ========================================================
 <DIV ALIGN=CENTER>
 <img src="images/mESC_paper.png" width="100%" height="100%" />
 </DIV>
+
+
+Mannifold learning
+========================================================
+<br>
+- Next several images taken from slides via Guy Wolf (Yale)
+
+- These slides can be found <a href="http://users.math.yale.edu/users/gw289/CpSc-445-545/Slides/CPSC445%20-%20Topic%2010%20-%20Diffusion%20Maps.pdf">here</a> 
+
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/mannifold.png" width="100%" height="100%" />
+</DIV>
+
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/obsexpman.png" width="100%" height="100%" />
+</DIV>
+
 
 Impetus 
 ========================================================
@@ -63,3 +88,71 @@ Assumes ~2% non-missing rate
 - What do? 
 
 
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/01colorkey.png" width="100%" height="100%" />
+</DIV>
+
+Linearly increasing
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/violin.5655.png" width="100%" height="100%" />
+</DIV>
+
+Dropoff
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/violin.15783.png" width="100%" height="100%" />
+</DIV>
+
+Linear Decreasing
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/violin.16990.png" width="100%" height="100%" />
+</DIV>
+
+Varying, no clear effect
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/violin.17189.png" width="100%" height="100%" />
+</DIV>
+
+
+V-shaped
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/violin.1706.png" width="100%" height="100%" />
+</DIV>
+
+
+Transition on/off
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/violin.8642.png" width="100%" height="100%" />
+</DIV>
+
+Sigmoidal with dropout
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/violin.1684.png" width="100%" height="100%" />
+</DIV>
+
+Overall picture
+========================================================
+<br>
+$\forall$ gene $g$, fit OLS Regression with known timepoint $t$ per cell--   
+
+$$log_2(g +1) = \beta_0 + \beta_1 t $$
+
+<DIV ALIGN=CENTER>
+<img src="images/05allBetas.png" width="60%" height="60%" />
+</DIV>
+
+
+GPLVM
+========================================================
+<br><br>
+<DIV ALIGN=CENTER>
+<img src="images/GPLVM.png" width="45%" height="70%" />
+<img src="images/wSE.png" width="45%" height="70%" />
+</DIV>
