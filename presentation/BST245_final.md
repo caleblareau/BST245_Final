@@ -275,7 +275,9 @@ $$\log_2(g +1) \sim \beta_0 + \beta_1 t^{**} $$
 Statement of problem
 ========================================================
 <br>
-Given a matrix of $m$ genes (features) by $n$ samples in a matrix <b> $Y$</b>, determine a latent vector $P$ with dimension $1$ x $n$ that reflects the (smooth) developmental trajectory of the $n$ cells from the variance in $m$ genes.
+Given a matrix of $D$ genes (features) by $n$ samples in a matrix <b> $Y$</b>, determine a latent vector $P$ with dimension $1$ x $n$ that reflects the (smooth) developmental trajectory of the $n$ cells from the variance in $D$ genes.<br>
+- $D$ can be thought of has a higher dimension space, and we want to infer $d$ ($d$ < $D$) latent variables in the gene data.
+  - One of the $d$ latent variables ideally reflects developmental ordering. 
 
 
 Perfect latent variable
@@ -293,8 +295,35 @@ Perfect latent variable
 
 PCA
 ========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/PCA.png" width="100%" height="30%" />
+</DIV>
 
+Computing PCA
+========================================================
+<br>
+$Y$ is a $D$ x $n$ matrix. Compute the covariance matrix--
 
+$$ \Sigma = E(YY^{T}) - \mu \mu^T$$
+where $\mu = E(Y)$. <br>
+
+Then compute the spectral decomposition of the covariance matrix, $\Sigma$
+
+$$\Sigma a_j = \lambda_j a_j$$
+for $j \in (1, ..., D)$
+<br><br>
+Then $a_j$ represent the eigenvectors of the data matrix $Y$. 
+
+<br>
+
+```r
+> irlba::prcomp_irlba()
+
+> prcomp()
+
+> princomp()
+```
 
 PCA
 ========================================================
@@ -319,8 +348,8 @@ Correlation with all PCs
 
 Pause...
 ========================================================
-<br>
-PCA by itself isn't satisfactory... <br><br> Ideas for improvements?
+<br><br> <br> 
+PCA by itself isn't satisfactory... <br> <br> <br><br> Ideas for improvements?
 
 Improving on PCA 
 ========================================================
@@ -374,6 +403,12 @@ Tackling 1 and building to 2
 <img src="images/ppca.png" width="50%" height="70%" />
 </DIV><br>
 
+========================================================
+<br><br><br>
+<DIV ALIGN=CENTER>
+<img src="images/thesis.png" width="90%" height="70%" />
+</DIV><br>
+
 
 ========================================================
 <br>
@@ -381,6 +416,47 @@ Tackling 1 and building to 2
 <img src="images/probPCA.png" width="70%" height="70%" />
 </DIV><br>
 Slide from Neil Lawrence
+
+Computing Probablistic PCA -- Factor Analysis
+========================================================
+<br><br>
+$Y$ is a $D$ x $n$ matrix. $x$ is a $d$ x $n$ matrix ($d < D$). Want to relate $x$ and $Y$ and assume that the relationship is linear--
+
+$$ Y = Wx + \epsilon$$
+where $W$ is a $D$ x $d$ matrix. <br><br><br>
+
+By convention (after locating the matrix), $$x \sim \mathcal{N} (0, I)$$
+where $I$ is the identity matrix of dimension $d$ x $d$. <br> <br><br>
+
+Specify the error, $$\epsilon \sim \mathcal{N} (0, \Psi)$$
+where we assume $\Psi$ to be a diagonal matrix $D$ x $D$.
+<br><br>
+- Assuming the diagonal structure of $\Psi$ means that all observertional correlations is due to the latent variables.
+- In other words, $Y_i$ for $i \in (1, ..., n)$ are conditionally independent given $x$
+
+Computing Probablistic PCA -- Factor Analysis II
+========================================================
+<br>
+Then $Y_i$ for $i \in (1, ..., n)$, $$ Y_i | x_i \sim  \mathcal{N} (0, \Psi)$$
+<br>
+Then we can integrate out the latent variables--
+
+$$\int p( Y_i | x_i , W, \Psi) p(x_i) dx_i  $$
+
+Under this specification, we can write the MVN distribution for our observations-- <br><br>$$ Y \sim  \mathcal{N} (0, WW^T + \Psi)  $$
+
+
+Bayesian  PCA
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/bPCA1.png" width="40%" height="70%" /> <br>
+<img src="images/bPCA2.png" width="40%" height="70%" /> <br>
+<img src="images/bPCA3.png" width="40%" height="70%" /> <br>
+</DIV>
+- $\alpha_i$ represents the inverse of the variance; for large $\alpha_i$, contribution of latent factors is low.
+- Solved by EM / similar algorithm
+
 
 Bayesian / Probablistic PCA
 ========================================================
