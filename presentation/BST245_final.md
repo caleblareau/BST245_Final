@@ -39,14 +39,13 @@ Overview
 ========================================================
 <br>
 - Motivation
-- Single cell RNA-Seq
+  - Single cell RNA-Seq<br><br>
 - Model Dataset
-  - EDA
+  - EDA <br><br>
 - Methods of estimating pseudotime (developmental time)
-  - PCA (Probablistic)
-  - Gaussian Process Latent Variable Modeling
-  - Diffusion Components
-- Evaluation of methods in model data setting
+  - PCA 
+  - Probablistic PCA
+  - Gaussian Process Latent Variable Modeling 
 
 Trajectories...
 ========================================================
@@ -101,6 +100,9 @@ Stergachis $et al.$, Cell 2013
 </DIV><br>
 Corces $et al.$ Nature Genetics, 2016
 
+How do we characterize single cells?
+========================================================
+
 
 ========================================================
 <DIV ALIGN=CENTER>
@@ -108,10 +110,12 @@ Corces $et al.$ Nature Genetics, 2016
 </DIV><br>
 Proserpio and Mahata, Immunology 2015
 
-Statement of problem
+
 ========================================================
 <br>
-<b>Given a matrix of $m$ genes (features) by $n$ samples, compute a vector $n$ x $1$ that:</b>
+<DIV ALIGN=CENTER>
+<img src="images/mRNA-cell.png" width="70%" height="80%" />
+</DIV><br>
 
 
 ========================================================
@@ -119,39 +123,51 @@ Statement of problem
 <img src="images/mESC_paper.png" width="100%" height="80%" />
 </DIV>
 
-
-Mannifold learning
 ========================================================
 <br>
-- Next several images taken from slides via Guy Wolf (Yale)
-
-- These slides can be found <a href="http://users.math.yale.edu/users/gw289/CpSc-445-545/Slides/CPSC445%20-%20Topic%2010%20-%20Diffusion%20Maps.pdf">here</a> 
-
-========================================================
 <DIV ALIGN=CENTER>
-<img src="images/mannifold.png" width="100%" height="80%" />
+<img src="images/ovary.png" width="70%" height="80%" />
 </DIV>
 
-========================================================
-<DIV ALIGN=CENTER>
-<img src="images/obsexpman.png" width="100%" height="80%" />
-</DIV>
-
-
-Impetus 
 ========================================================
 <br>
-- Lots of single cell data on the horizon... <br><br>
 <DIV ALIGN=CENTER>
-<img src="images/mESC_paper.png" width="50%" height="50%" /> <br>
-Assumes ~2% non-missing rate
+<img src="images/measurements.png" width="70%" height="80%" />
 </DIV>
-- What do? 
 
 
 ========================================================
 <DIV ALIGN=CENTER>
 <img src="images/01colorkey.png" width="100%" height="80%" />
+</DIV>
+
+
+EDA
+========================================================
+
+<br>
+
+```r
+> dim(deng)
+
+[1] 17585   255
+
+> sum(deng == 0) / prod(dim(deng))
+
+[1] 0.5019552
+
+> head(sample(colnames(deng)))
+
+[1] "earlyblast" "16cell"     "4cell"      "midblast"   "lateblast"  "16cell"   
+
+> head(sample(rownames(deng)))
+
+[1] "Gm7073"  "Mir697"  "Uqcrc2"  "Ap2m1"   "Slc10a3" "Ccr1"   
+```
+
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/02colorBar.png" width="100%" height="80%" />
 </DIV>
 
 Linearly increasing
@@ -209,26 +225,92 @@ $$log_2(g +1) = \beta_0 + \beta_1 t $$
 <img src="images/05allBetas.png" width="60%" height="60%" />
 </DIV>
 
+
+Statement of problem
+========================================================
+<br>
+<b>Given a matrix of $m$ genes (features) by $n$ samples, compute a vector $n$ x $1$ that:</b>
+
+
+Perfect latent variable
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/perfect.png" width="50%" height="30%" />
+</DIV>
+<br>
+
+```r
+> cor(runif(length(time)) %>% sort(), as.numeric(time) %>% sort())^2
+
+[1] 0.8799669
+```
+
+PCA
+========================================================
+
+PCA
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/pc1.png" width="50%" height="30%" />
+</DIV>
+<br>
+
+```r
+> cor(pca$rotation[,1], as.numeric(time))^2
+
+[1] 0.5933009
+```
+
+
+Correlation with all PCs
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/allPCs.png" width="70%" height="30%" />
+</DIV>
+
+
+Pause...
+========================================================
+<br>
+PCA by itself isn't satisfactory... <br><br> Ideas for improvements?
+
+Improving on PCA 
+========================================================
+<br><br>
+1) Non-linear latent variable inference <br> <br> 2) Quantifiying uncertainty
+
+
+Mannifold / Non-linear dimension learning
+========================================================
+<br>
+- Next several images taken from slides via Guy Wolf (Yale)
+
+- These slides can be found <a href="http://users.math.yale.edu/users/gw289/CpSc-445-545/Slides/CPSC445%20-%20Topic%2010%20-%20Diffusion%20Maps.pdf">here</a> 
+
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/mannifold.png" width="100%" height="80%" />
+</DIV>
+
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/obsexpman.png" width="100%" height="80%" />
+</DIV>
+
+
 ========================================================
 <br><br>
 <DIV ALIGN=CENTER>
 <img src="images/reviewTitle.png" width="30%" height="30%" />
 <img src="images/reviewImage.png" width="70%" height="30%" />
-
 </DIV>
+
 
 ========================================================
 <br><br>
 <DIV ALIGN=CENTER>
 <img src="images/ppca.png" width="50%" height="70%" />
 </DIV><br>
-
-========================================================
-<br><br>
-<DIV ALIGN=CENTER>
-<img src="images/Lawrence.png" width="70%" height="70%" />
-</DIV>
-
 
 
 ========================================================
@@ -238,7 +320,46 @@ $$log_2(g +1) = \beta_0 + \beta_1 t $$
 </DIV><br>
 Slides from Neil Lawrence
 
+Bayesian / Probablistic PCA
+========================================================
+<br>
+
+```r
+library(pcaMethods)
+
+pca()
+
+resPCA   <- pca(data, method="svd",       center=FALSE, nPcs=5)
+resPPCA  <- pca(data, method="ppca",      center=FALSE, nPcs=5)
+resBPCA  <- pca(data, method="bpca",      center=FALSE, nPcs=5)
+resSVDI  <- pca(data, method="svdImpute", center=FALSE, nPcs=5)
+```
+
+
+========================================================
+<br><br>
+<DIV ALIGN=CENTER>
+<img src="images/Lawrence.png" width="70%" height="70%" />
+</DIV>
+
 GPLVM
+========================================================
+<br>
+
+```r
+library(pseudogp)
+
+fit <- fitPseudotime(data, smoothing_alpha = 30, smoothing_beta = 6,
+                        iter = 1000, chains = 1)
+
+posteriorBoxplot(fit)
+```
+<DIV ALIGN=CENTER>
+<img src="images/psK.png" width="50%" height="70%" />
+</DIV>
+
+
+GPLVM -- Noteable application
 ========================================================
 <br><br>
 <DIV ALIGN=CENTER>
@@ -249,9 +370,73 @@ GPLVM
 
 GPLVM
 ========================================================
-<br><br>
+<br>
 <DIV ALIGN=CENTER>
-<img src="images/GPLVM.png" width="45%" height="70%" />
-<img src="images/wSE.png" width="45%" height="70%" />
-</DIV>
+<img src="images/gplvm.png" width="45%" height="70%" />
+<img src="images/uncertain.png" width="45%" height="70%" />
+</DIV> <br>
+
+```r
+> cor(gplvm_means, as.numeric(time))^2
+
+[1] 0.783522
+```
+
+GPLVM versus PCA 1
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/pc1.png" width="45%" height="70%" />
+<img src="images/gplvm.png" width="45%" height="70%" />
+</DIV> <br>
+
+
+```r
+> cor(pca$rotation[,1], as.numeric(time))^2
+
+[1] 0.5933009
+
+> cor(gplvm_means, as.numeric(time))^2
+
+[1] 0.783522
+```
+
+
+GPLVM versus PCA 2
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/PCAvGPLVM.png" width="70%" height="70%" />
+</DIV> <br>
+
+Wrapping up...
+========================================================
+<br>
+- GPLVM provide both a probablistic and non-linear latent variable inference structure <br>
+  - All other published algorithms provide point estimates, difficult to ascertain uncertainty
+<br><br>
+- Under this framework, Bayesian priors are allowed, which have been useful in published studies
+<br><br>
+- Tools and methods useful in many data analyses contexts (including machine learning)
+  - Motivated here by single cell analysis
+<br><br>
+
+Detailed look at early embryo neurogenesis? 
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/10x.png" width="90%" height="70%" />
+</DIV> <br>
+
+What's Marky Mark up to these days?
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/HCA.png" width="45%" height="70%" />
+<img src="images/zuck2.png" width=60%" height="70%" />
+</DIV> <br>
+
+
+Thanks! 
+========================================================
 

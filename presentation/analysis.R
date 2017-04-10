@@ -26,6 +26,10 @@ time <- factor(
 cl <- rev(c('#000033', '#0000A5', '#1E00FB', '#6F00FD', '#C628D6', '#FE629D', '#FF9B64', '#FFD52C', '#FFFF5F'))
 
 
+barplot <- data.frame(time)
+ggplot(barplot, aes(x = time)) + geom_bar(aes(fill = time)) + pretty_plot() + scale_fill_manual(values = rev(cl)) + theme(legend.position = "none")
+ggsave("images/02colorBar.png", units = "in", width = 8, height = 6)
+
 textpdf <- data.frame(
   levels = rev(c(
         "early2cell",
@@ -107,7 +111,7 @@ plot(
     time,
     xlab="Principle component 1",
     ylab="True Ordering",
-    col = cl[time],
+    col = rev(cl)[time],
     pch = 16
 )
 
@@ -146,12 +150,31 @@ plot(
     1:length(means),
     xlab="GPLVM Ordering (Means w/ 95% Posterior Intervals)",
     ylab="Sorted Ordering",
-    col = cl[as.numeric(time[ix])],
+    col = rev(cl)[as.numeric(time[ix])],
     pch = 16
 )
-segments(lb[ix],  1:length(means), up[ix],  1:length(means),col = cl[as.numeric(time[ix])], pch = 16)
+segments(lb[ix],  1:length(means), up[ix],  1:length(means),col = rev(cl)[as.numeric(time[ix])], pch = 16)
 
 cor(means, as.numeric(time))^2
+
+plot(
+    means,
+    pca$rotation[,1],
+    xlab="GPLVM Ordering",
+    ylab="PC1 Ordering",
+    col = rev(cl)[time],
+    pch = 16
+)
+
+plot(
+    means,
+    time,
+    xlab="GPLVM Ordering (Means w/ 95% Posterior Intervals)",
+    ylab="Sorted Ordering",
+    col = rev(cl)[time],
+    pch = 16
+)
+
 
 
 # Define the top and bottom of the errorbars
@@ -159,17 +182,17 @@ limits <- aes(ymax = resp + se, ymin=resp - se)
 
 
 
-dm <- destiny::DiffusionMap(t(log2(1+deng)))
-plot(
-    dm@eigenvectors[,1],
-    time,
-    xlab="Diffusion component 1",
-    ylab="True Ordering",
-    col = colours[time],
-    pch = 16
-)
+#dm <- destiny::DiffusionMap(t(log2(1+deng)))
+#plot(
+#    dm@eigenvectors[,1],
+#    time,
+#    xlab="Diffusion component 1",
+#    ylab="True Ordering",
+#    col = colours[time],
+#    pch = 16
+#)
 
-cor(dm@eigenvectors[,1], as.numeric(time))^2
+#cor(dm@eigenvectors[,1], as.numeric(time))^2
 
 
 cordf <- data.frame(
@@ -177,16 +200,23 @@ cordf <- data.frame(
   y = sapply(1:20, function(i){ cor(pca$rotation[,i], as.numeric(time))^2})
 )
 
-ggplot(cordf, aes(x = x, y = y)) + geom_point() + geom_line()
+ggplot(data=cordf, aes(x=x, y=y)) + geom_bar(stat="identity") + theme(plot.subtitle = element_text(vjust = 1), 
+    plot.caption = element_text(vjust = 1)) +labs(x = "Component", y = "R^2 with Time") +
+   pretty_plot()
+ggsave(filename = paste0("images/allPCs.png"), units = "in", width = 8, height = 6)
 
 cor(runif(length(time)) %>% sort(), as.numeric(time) %>% sort())^2  
 
+#
+# Perfect Predictor
+#
 plot(
     runif(length(time)) %>% sort(),
     as.numeric(time) %>% sort(),
     xlab="Perfect Predictor",
     ylab="True Ordering",
-    col = colours[as.numeric(time) %>% sort()],
+    col = rev(cl)[as.numeric(time) %>% sort()],
     pch = 16
 )
 
+runif(length(time)) %>% sort() %>% cor(as.numeric(time) %>% sort())
