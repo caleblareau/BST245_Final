@@ -77,10 +77,42 @@ betas <- sapply(1:dim(deng)[1], function(i){
   coef(lm(log2(deng[i,]+1) ~ as.numeric(time)))[2] %>% unname
 })
 bdf <- data.frame(betas)
-ggplot(bdf, aes(x=betas)) + geom_histogram(binwidth = 0.01) +labs(x = "Value of Beta", y = "count") + pretty_plot() +
+ggplot(bdf, aes(x=betas)) + geom_histogram(binwidth = 0.01) +labs(x = "Value of B1", y = "count") + pretty_plot() +
     scale_x_continuous(limits=c(-2, 2)) + 
-    ggtitle("OLS Beta Coefficients")
+    ggtitle("OLS Beta Coefficient with Time")
 ggsave("images/05allBetas.png", units = "in", width = 8, height = 6)
+
+#
+# Permute
+#
+
+betasP <- sapply(1:dim(deng)[1], function(i){
+  coef(lm(log2(deng[i,]+1) ~ sample(as.numeric(time))))[2] %>% unname
+})
+
+bdf <- data.frame(betasP)
+ggplot(bdf, aes(x=betasP)) + geom_histogram(binwidth = 0.01) +labs(x = "Value of B1 from Permuted Regression", y = "count") +
+  pretty_plot() + scale_x_continuous(limits=c(-2, 2)) + 
+    ggtitle("OLS Beta Coefficient with Permuted Time")
+ggsave("images/06allBetas.png", units = "in", width = 8, height = 6)
+
+
+timeP <- factor(
+    colnames(deng),
+    levels = sample(levels(time))
+)
+
+betasP <- sapply(1:dim(deng)[1], function(i){
+  coef(lm(log2(deng[i,]+1) ~ as.numeric(timeP)))[2] %>% unname
+})
+
+bdf <- data.frame(betasP)
+ggplot(bdf, aes(x=betasP)) + geom_histogram(binwidth = 0.01) +labs(x = "Value of B1 from Permuted (Factor-level) Regression", y = "count") +
+  pretty_plot() + scale_x_continuous(limits=c(-2, 2)) + 
+    ggtitle("OLS Beta Coefficient with Permuted (Factor-level) Time")
+ggsave("images/07allBetas.png", units = "in", width = 8, height = 6)
+
+
 
 #
 # Specific violin plots

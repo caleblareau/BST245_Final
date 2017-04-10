@@ -74,8 +74,6 @@ Questions from a developmental biology perspective
 - Can we identify important transition points and the genetic signature underlying them?
 
 
-
-
 Waddington Landscape
 ========================================================
 <br>
@@ -116,6 +114,32 @@ Proserpio and Mahata, Immunology 2015
 <DIV ALIGN=CENTER>
 <img src="images/mRNA-cell.png" width="70%" height="80%" />
 </DIV><br>
+
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/scRNA.png" width="90%" height="80%" />
+</DIV><br>
+
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/counts.png" width="90%" height="80%" />
+</DIV><br>
+
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/boneRet.png" width="80%" height="80%" />
+</DIV><br>
+
+========================================================
+
+<DIV ALIGN=CENTER>
+<img src="images/blood.png" width="20%" height="80%" />
+<img src="images/orderResult.png" width="80%" height="80%" />
+</DIV><br>
+
 
 
 ========================================================
@@ -219,17 +243,39 @@ Overall picture
 <br>
 $\forall$ gene $g$, fit OLS Regression with known timepoint $t$ per cell--   
 
-$$log_2(g +1) = \beta_0 + \beta_1 t $$
+$$\log_2(g +1) \sim \beta_0 + \beta_1 t $$
 
 <DIV ALIGN=CENTER>
 <img src="images/05allBetas.png" width="60%" height="60%" />
+</DIV>
+
+Permuted
+========================================================
+<br>
+$\forall$ gene $g$, fit OLS Regression with permuted timepoint $t^*$ per cell--   
+
+$$\log_2(g +1) \sim \beta_0 + \beta_1 t^* $$
+
+<DIV ALIGN=CENTER>
+<img src="images/06allBetas.png" width="60%" height="60%" />
+</DIV>
+
+Permuted
+========================================================
+<br>
+$\forall$ gene $g$, fit OLS Regression with permuted **factor** timepoint $t^{**}$ per cell--   
+
+$$\log_2(g +1) \sim \beta_0 + \beta_1 t^{**} $$
+
+<DIV ALIGN=CENTER>
+<img src="images/07allBetas.png" width="60%" height="60%" />
 </DIV>
 
 
 Statement of problem
 ========================================================
 <br>
-<b>Given a matrix of $m$ genes (features) by $n$ samples, compute a vector $n$ x $1$ that:</b>
+Given a matrix of $m$ genes (features) by $n$ samples in a matrix <b> $Y$</b>, determine a latent vector $P$ with dimension $1$ x $n$ that reflects the (smooth) developmental trajectory of the $n$ cells from the variance in $m$ genes.
 
 
 Perfect latent variable
@@ -247,6 +293,8 @@ Perfect latent variable
 
 PCA
 ========================================================
+
+
 
 PCA
 ========================================================
@@ -277,7 +325,15 @@ PCA by itself isn't satisfactory... <br><br> Ideas for improvements?
 Improving on PCA 
 ========================================================
 <br><br>
-1) Non-linear latent variable inference <br> <br> 2) Quantifiying uncertainty
+1) Quantifiying uncertainty <br> <br> 2)  Non-linear latent variable inference
+
+Uncertainty
+========================================================
+<br>
+<DIV ALIGN=CENTER>
+<img src="images/atac.png" width="100%" height="80%" />
+</DIV><br> <br>
+From Buenrostro $et al.$ bioRxiv 2017
 
 
 Mannifold / Non-linear dimension learning
@@ -301,24 +357,30 @@ Mannifold / Non-linear dimension learning
 ========================================================
 <br><br>
 <DIV ALIGN=CENTER>
-<img src="images/reviewTitle.png" width="30%" height="30%" />
-<img src="images/reviewImage.png" width="70%" height="30%" />
+<img src="images/reviewTitle.png" width="70%" height="30%" />
 </DIV>
 
 
 ========================================================
 <br><br>
 <DIV ALIGN=CENTER>
+<img src="images/reviewImage.png" width="70%" height="30%" />
+</DIV>
+
+Tackling 1 and building to 2
+========================================================
+<br>
+<DIV ALIGN=CENTER>
 <img src="images/ppca.png" width="50%" height="70%" />
 </DIV><br>
 
 
 ========================================================
-<br><br>
+<br>
 <DIV ALIGN=CENTER>
 <img src="images/probPCA.png" width="70%" height="70%" />
 </DIV><br>
-Slides from Neil Lawrence
+Slide from Neil Lawrence
 
 Bayesian / Probablistic PCA
 ========================================================
@@ -428,14 +490,13 @@ Detailed look at early embryo neurogenesis?
 <img src="images/10x.png" width="90%" height="70%" />
 </DIV> <br>
 
-What's Marky Mark up to these days?
+
 ========================================================
 <br>
 <DIV ALIGN=CENTER>
 <img src="images/HCA.png" width="45%" height="70%" />
 <img src="images/zuck2.png" width=60%" height="70%" />
 </DIV> <br>
-
 
 Thanks! 
 ========================================================
