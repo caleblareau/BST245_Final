@@ -24,12 +24,20 @@
   word-wrap: normal;
   -moz-hyphens: none;
 }
+
+.reveal h1, .reveal h2, .reveal h3 {
+  word-wrap: normal;
+  -moz-hyphens: none;
+}
+
 </style>
 
 Inferring Cellular Developmental Time
 ========================================================
-autosize: true  
-transition-speed: slow
+transition-speed: default
+transition: fade
+autosize: false
+
 
 "From Multivariate to Longitudinal Data"<br><br>April 11, 2017
 
@@ -37,14 +45,13 @@ transition-speed: slow
 
 Overview
 ========================================================
-<br>
 - Motivation
-  - Single cell RNA-Seq<br><br>
+  - Single cell RNA-Seq
 - Model Dataset
-  - EDA <br><br>
-- Methods of estimating pseudotime (developmental time)
+  - EDA
+- Methods of estimating developmental time
   - PCA 
-  - Probablistic PCA
+  - Probablistic PCA; Bayesian PCA
   - Gaussian Process Latent Variable Modeling 
 
 Trajectories...
@@ -65,7 +72,7 @@ Trajectories...
 <img src="images/heme.jpg" width="40%" height="80%" />
 </DIV>
 
-Questions from a developmental biology perspective
+Questions from developmental biology
 ========================================================
 <br>
 - What happens in a cell such that it becomes a brain, toe, or a heart?
@@ -86,17 +93,16 @@ Some cancers regain stemness programs
 <DIV ALIGN=CENTER>
 <img src="images/leuk.png" width="60%" height="80%" />
 </DIV><br>
-Stergachis $et al.$, Cell 2013
+Stergachis $et$   $al.$, Cell 2013
 
 
-"Stem cell-like" covariate is important in AML
+Stem cell-likeness in AML
 ========================================================
-<br><br>
 <DIV ALIGN=CENTER>
-<img src="images/surv1.png" width="40%" height="80%" />
-<img src="images/surv2.png" width="40%" height="80%" />
+<img src="images/surv1.png" width="45%" height="80%" />
+<img src="images/surv2.png" width="46%" height="80%" />
 </DIV><br>
-Corces $et al.$ Nature Genetics, 2016
+Corces $et$   $al.$ Nature Genetics, 2016
 
 How do we characterize single cells?
 ========================================================
@@ -128,9 +134,8 @@ Proserpio and Mahata, Immunology 2015
 </DIV><br>
 
 ========================================================
-<br>
 <DIV ALIGN=CENTER>
-<img src="images/boneRet.png" width="80%" height="80%" />
+<img src="images/boneRet.png" width="100%" height="80%" />
 </DIV><br>
 
 ========================================================
@@ -168,7 +173,7 @@ Proserpio and Mahata, Immunology 2015
 
 EDA
 ========================================================
-
+class: small-code
 <br>
 
 ```r
@@ -182,7 +187,7 @@ EDA
 
 > head(sample(colnames(deng)))
 
-[1] "earlyblast" "16cell"     "4cell"      "midblast"   "lateblast"  "16cell"   
+[1] "earlyblast" "16cell" "4cell" "midblast" "lateblast" "16cell"   
 
 > head(sample(rownames(deng)))
 
@@ -191,51 +196,51 @@ EDA
 
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/02colorBar.png" width="100%" height="80%" />
+<img src="images/02colorBar.png" width="80%" height="80%" />
 </DIV>
 
 Linearly increasing
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/violin.5655.png" width="100%" height="80%" />
+<img src="images/violin.5655.png" width="80%" height="80%" />
 </DIV>
 
 Dropoff
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/violin.15783.png" width="100%" height="80%" />
+<img src="images/violin.15783.png" width="80%" height="80%" />
 </DIV>
 
 Linear Decreasing
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/violin.16990.png" width="100%" height="80%" />
+<img src="images/violin.16990.png" width="80%" height="80%" />
 </DIV>
 
 Varying, no clear effect
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/violin.17189.png" width="100%" height="80%" />
+<img src="images/violin.17189.png" width="80%" height="80%" />
 </DIV>
 
 
 V-shaped
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/violin.1706.png" width="100%" height="80%" />
+<img src="images/violin.1706.png" width="80%" height="80%" />
 </DIV>
 
 
 Transition on/off
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/violin.8642.png" width="100%" height="80%" />
+<img src="images/violin.8642.png" width="80%" height="80%" />
 </DIV>
 
 Sigmoidal with dropout
 ========================================================
 <DIV ALIGN=CENTER>
-<img src="images/violin.1684.png" width="100%" height="80%" />
+<img src="images/violin.1684.png" width="80%" height="80%" />
 </DIV>
 
 Overall picture
@@ -246,46 +251,46 @@ $\forall$ gene $g$, fit OLS Regression with known timepoint $t$ per cell--
 $$\log_2(g +1) \sim \beta_0 + \beta_1 t $$
 
 <DIV ALIGN=CENTER>
-<img src="images/05allBetas.png" width="60%" height="60%" />
+<img src="images/05allBetas.png" width="50%" height="60%" />
 </DIV>
 
 Permuted
 ========================================================
 <br>
-$\forall$ gene $g$, fit OLS Regression with permuted timepoint $t^*$ per cell--   
+$\forall$ gene $g$, fit regression with permuted timepoint $t^*$ per cell
 
 $$\log_2(g +1) \sim \beta_0 + \beta_1 t^* $$
 
 <DIV ALIGN=CENTER>
-<img src="images/06allBetas.png" width="60%" height="60%" />
+<img src="images/06allBetas.png" width="50%" height="60%" />
 </DIV>
 
 Permuted
 ========================================================
 <br>
-$\forall$ gene $g$, fit OLS Regression with permuted **factor** timepoint $t^{**}$ per cell--   
+$\forall$ gene $g$, fit regression with permuted **factor** timepoint $t^{**}$   
 
 $$\log_2(g +1) \sim \beta_0 + \beta_1 t^{**} $$
 
 <DIV ALIGN=CENTER>
-<img src="images/07allBetas.png" width="60%" height="60%" />
+<img src="images/07allBetas.png" width="50%" height="60%" />
 </DIV>
 
 
 Statement of problem
 ========================================================
 <br>
-Given a matrix of $D$ genes (features) by $n$ samples in a matrix <b> $Y$</b>, determine a latent vector $P$ with dimension $1$ x $n$ that reflects the (smooth) developmental trajectory of the $n$ cells from the variance in $D$ genes.<br>
+Given a matrix of $D$ genes (features) by $n$ samples in a matrix $Y$, determine a latent vector $P$ with dimension $1$ x $n$ that reflects the (smooth) developmental trajectory of the $n$ cells from the variance in $D$ genes.<br>
 - $D$ can be thought of has a higher dimension space, and we want to infer $d$ ($d$ < $D$) latent variables in the gene data.
   - One of the $d$ latent variables ideally reflects developmental ordering. 
 
 
 Perfect latent variable
 ========================================================
+class: small-code
 <DIV ALIGN=CENTER>
 <img src="images/perfect.png" width="50%" height="30%" />
 </DIV>
-<br>
 
 ```r
 > cor(runif(length(time)) %>% sort(), as.numeric(time) %>% sort())^2
@@ -302,18 +307,20 @@ PCA
 
 Computing PCA
 ========================================================
+class: small-code
 <br>
 $Y$ is a $D$ x $n$ matrix. Compute the covariance matrix--
 
 $$ \Sigma = E(YY^{T}) - \mu \mu^T$$
-where $\mu = E(Y)$. <br>
+where $\mu = E(Y)$ <br>
 
-Then compute the spectral decomposition of the covariance matrix, $\Sigma$
+Then compute the spectral decomposition of $\Sigma$
 
 $$\Sigma a_j = \lambda_j a_j$$
 for $j \in (1, ..., D)$
 <br><br>
-Then $a_j$ represent the eigenvectors of the data matrix $Y$. 
+Then $a_j$ represent the eigenvectors of the data matrix $Y$. <br> Note the ordering of $j$ is meaningful-- 
+$$ \lambda_1 \geq \lambda_2 \geq ... \geq \lambda_D \geq 0$$
 
 <br>
 
@@ -327,6 +334,7 @@ Then $a_j$ represent the eigenvectors of the data matrix $Y$.
 
 PCA
 ========================================================
+class: small-code
 <DIV ALIGN=CENTER>
 <img src="images/pc1.png" width="50%" height="30%" />
 </DIV>
@@ -445,6 +453,13 @@ $$\int p( Y_i | x_i , W, \Psi) p(x_i) dx_i  $$
 
 Under this specification, we can write the MVN distribution for our observations-- <br><br>$$ Y \sim  \mathcal{N} (0, WW^T + \Psi)  $$
 
+Computing Probablistic PCA -- Factor Analysis II
+========================================================
+<br>
+Young-Whittle Factor Analysis (1950s)
+<br>
+$\psi_i$ element of the diagonal of $\Psi$; add constraint $\psi_i = \sigma^2$
+
 
 Bayesian  PCA
 ========================================================
@@ -460,6 +475,7 @@ Bayesian  PCA
 
 Bayesian / Probablistic PCA
 ========================================================
+class: small-code
 <br>
 
 ```r
@@ -482,6 +498,7 @@ resSVDI  <- pca(data, method="svdImpute", center=FALSE, nPcs=5)
 
 GPLVM
 ========================================================
+class: small-code
 <br>
 
 ```r
@@ -508,6 +525,7 @@ GPLVM -- Noteable application
 
 GPLVM
 ========================================================
+class: small-code
 <br>
 <DIV ALIGN=CENTER>
 <img src="images/gplvm.png" width="45%" height="70%" />
@@ -522,6 +540,7 @@ GPLVM
 
 GPLVM versus PCA 1
 ========================================================
+class: small-code
 <br>
 <DIV ALIGN=CENTER>
 <img src="images/pc1.png" width="45%" height="70%" />
