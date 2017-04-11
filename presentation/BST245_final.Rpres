@@ -280,7 +280,7 @@ $$\log_2(g +1) \sim \beta_0 + \beta_1 t^{**} $$
 Statement of problem
 ========================================================
 <br>
-Given a matrix of $D$ genes (features) by $n$ samples in a matrix $Y$, determine a latent vector $P$ with dimension $1$ x $n$ that reflects the (smooth) developmental trajectory of the $n$ cells from the variance in $D$ genes.<br>
+Given a matrix $\mathbf{Y}$ of $D$ genes (features) by $n$ samples, determine a latent vector $\mathbf{P}$ with dimension $1$ x $n$ that reflects the developmental trajectory of the $n$ cells from the variance in $D$ genes.<br>
 - $D$ can be thought of has a higher dimension space, and we want to infer $d$ ($d$ < $D$) latent variables in the gene data.
   - One of the $d$ latent variables ideally reflects developmental ordering. 
 
@@ -306,22 +306,23 @@ PCA
 
 Computing PCA
 ========================================================
-class: small-code
-<br>
-$Y$ is a $D$ x $n$ matrix. Compute the covariance matrix--
 
-$$ \Sigma = E(YY^{T}) - \mu \mu^T$$
+$\mathbf{Y}$ is a $D$ x $n$ matrix. Compute the covariance matrix--
+
+$$ \mathbf{\Sigma} = E(\mathbf{YY^{T}}) - \mathbf{\mu \mu^T}$$
 where $\mu = E(Y)$ <br>
 
-Then compute the spectral decomposition of $\Sigma$
+Then compute the spectral decomposition of $\mathbf{\Sigma}$
 
-$$\Sigma a_j = \lambda_j a_j$$
+$$\mathbf{\Sigma} a_j = \lambda_j a_j$$
 for $j \in (1, ..., D)$
 <br><br>
-Then $a_j$ represent the eigenvectors of the data matrix $Y$. <br> Note the ordering of $j$ is meaningful-- 
+Then $a_j$ represent the eigenvectors of the data matrix $\mathbf{Y}$. <br> Note the ordering of $j$ is meaningful-- 
 $$ \lambda_1 \geq \lambda_2 \geq ... \geq \lambda_D \geq 0$$
 
-<br>
+Computing PCA
+========================================================
+class: small-code
 ```{r, eval = FALSE}
 > irlba::prcomp_irlba()
 
@@ -364,11 +365,10 @@ Improving on PCA
 
 Uncertainty
 ========================================================
-<br>
 <DIV ALIGN=CENTER>
 <img src="images/atac.png" width="100%" height="80%" />
-</DIV><br> <br>
-From Buenrostro $et al.$ bioRxiv 2017
+</DIV><br> 
+From Buenrostro $et$   $al.$ bioRxiv 2017
 
 
 Mannifold / Non-linear dimension learning
@@ -390,16 +390,16 @@ Mannifold / Non-linear dimension learning
 
 
 ========================================================
-<br><br>
+<br>
 <DIV ALIGN=CENTER>
-<img src="images/reviewTitle.png" width="70%" height="30%" />
+<img src="images/reviewTitle.png" width="90%" height="30%" />
 </DIV>
 
 
 ========================================================
-<br><br>
+<br>
 <DIV ALIGN=CENTER>
-<img src="images/reviewImage.png" width="70%" height="30%" />
+<img src="images/reviewImage.png" width="90%" height="30%" />
 </DIV>
 
 Tackling 1 and building to 2
@@ -417,61 +417,72 @@ Tackling 1 and building to 2
 
 
 ========================================================
-<br>
 <DIV ALIGN=CENTER>
 <img src="images/probPCA.png" width="70%" height="70%" />
 </DIV><br>
 Slide from Neil Lawrence
 
-Computing Probablistic PCA -- Factor Analysis
+Factor Analysis
 ========================================================
-<br><br>
-$Y$ is a $D$ x $n$ matrix. $x$ is a $d$ x $n$ matrix ($d < D$). Want to relate $x$ and $Y$ and assume that the relationship is linear--
+$\mathbf{Y}$ is a $D$ x $n$ matrix. $\mathbf{x}$ is a $d$ x $n$ matrix ($d < D$). Want to relate $\mathbf{x}$ and $\mathbf{Y}$ and assume that the relationship is linear--
 
-$$ Y = Wx + \epsilon$$
-where $W$ is a $D$ x $d$ matrix. <br><br><br>
+$$ \mathbf{Y = Wx} + \epsilon$$<br>
+where $W$ is a $D$ x $d$ matrix. <br><br>
 
-By convention (after locating the matrix), $$x \sim \mathcal{N} (0, I)$$
-where $I$ is the identity matrix of dimension $d$ x $d$. <br> <br><br>
+By convention (after locating the matrix),<br><br> $$\mathbf{x} \sim \mathcal{N} (0, \mathbf{I})$$<br>
+where $\mathbf{I}$ is the identity matrix of dimension $d$ x $d$. 
 
-Specify the error, $$\epsilon \sim \mathcal{N} (0, \Psi)$$
-where we assume $\Psi$ to be a diagonal matrix $D$ x $D$.
-<br><br>
-- Assuming the diagonal structure of $\Psi$ means that all observertional correlations is due to the latent variables.
-- In other words, $Y_i$ for $i \in (1, ..., n)$ are conditionally independent given $x$
-
-Computing Probablistic PCA -- Factor Analysis II
+Factor Analysis II
 ========================================================
-<br>
-Then $Y_i$ for $i \in (1, ..., n)$, $$ Y_i | x_i \sim  \mathcal{N} (0, \Psi)$$
+Specify the error, $$\epsilon \sim \mathcal{N} (0, \mathbf{\Psi})$$<br>
+where we assume $\mathbf{\Psi}$ to be a diagonal matrix  $D$ x $D$.
+<br><br>
+- Assuming the diagonal structure of $\mathbf{\Psi}$ means that all observertional correlations is due to the latent variables.
+- In other words, $Y_i$ for $i \in (1, ..., n)$ are conditionally independent given $\mathbf{x}$
+
+Factor Analysis III
+========================================================
+Then $Y_i$ for $i \in (1, ..., n)$,<br><br> $$Y_i |x_i \sim  \mathcal{N} (0, \mathbf{\Psi})$$
 <br>
 Then we can integrate out the latent variables--
 
-$$\int p( Y_i | x_i , W, \Psi) p(x_i) dx_i  $$
+$$p( Y_i |\mathbf{W}, \mathbf{\Psi})= \int p( Y_i | x_i , \mathbf{W, \Psi}) p(x_i) dx_i  $$
 
-Under this specification, we can write the MVN distribution for our observations-- <br><br>$$ Y \sim  \mathcal{N} (0, WW^T + \Psi)  $$
+Under this specification, we can write the MVN distribution for our observations-- <br><br>$$ Y \sim  \mathcal{N} (0, \mathbf{C}), \mathbf{C} = \mathbf{WW^T }+ \mathbf{\Psi}  $$
 
-Computing Probablistic PCA -- Factor Analysis II
+Computing PCA via Factor Analysis
 ========================================================
 <br>
 Young-Whittle Factor Analysis (1950s)
-<br>
-$\psi_i$ element of the diagonal of $\Psi$; add constraint $\psi_i = \sigma^2$
+<br><br>
+$\psi_i$ element of the diagonal of $\Psi$; add constraint $\psi_i = \sigma^2$<br><br>
+Assume $\sigma^2$ known, MLE yields same $W$ as PCA <br><br>
+$$  \mathcal{L} = \tfrac{-N}{2}\{ D\log(2\pi) + \log|C| + \textrm{tr}(C^{-1}\Sigma)  \}   $$
+
+Probablistic PCA (Tipping and Bishop)
+========================================================
+- Assuming $\sigma^2$ may not be reasonable; want to estimate it from the data (keep in likelihood)
+- Can estimate using EM
 
 
 Bayesian  PCA
 ========================================================
-<br>
 <DIV ALIGN=CENTER>
-<img src="images/bPCA1.png" width="40%" height="70%" /> <br>
-<img src="images/bPCA2.png" width="40%" height="70%" /> <br>
-<img src="images/bPCA3.png" width="40%" height="70%" /> <br>
+<img src="images/bPCA1.png" width="70%" height="70%" /> 
+<img src="images/bPCA2.png" width="70%" height="70%" /> 
 </DIV>
-- $\alpha_i$ represents the inverse of the variance; for large $\alpha_i$, contribution of latent factors is low.
+
+Bayesian  PCA
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/bPCA3.png" width="70%" height="70%" /> <br>
+</DIV>
+- $\alpha_i$ represents the inverse of the variance
+  - for large $\alpha_i$, contribution of latent factor $i$ is low.
 - Solved by EM / similar algorithm
 
 
-Bayesian / Probablistic PCA
+Bayesian / Probablistic PCA in R
 ========================================================
 class: small-code
 <br>
@@ -480,10 +491,8 @@ library(pcaMethods)
 
 pca()
 
-resPCA   <- pca(data, method="svd",       center=FALSE, nPcs=5)
-resPPCA  <- pca(data, method="ppca",      center=FALSE, nPcs=5)
-resBPCA  <- pca(data, method="bpca",      center=FALSE, nPcs=5)
-resSVDI  <- pca(data, method="svdImpute", center=FALSE, nPcs=5)
+resPPCA <- pca(data, method="ppca", center=FALSE, nPcs=5)
+resBPCA <- pca(data, method="bpca", center=FALSE, nPcs=5)
 
 ```
 
@@ -491,13 +500,12 @@ resSVDI  <- pca(data, method="svdImpute", center=FALSE, nPcs=5)
 ========================================================
 <br><br>
 <DIV ALIGN=CENTER>
-<img src="images/Lawrence.png" width="70%" height="70%" />
+<img src="images/Lawrence.png" width="90%" height="70%" />
 </DIV>
 
 GPLVM
 ========================================================
 class: small-code
-<br>
 ```{r, eval = FALSE}
 library(pseudogp)
 
@@ -513,9 +521,9 @@ posteriorBoxplot(fit)
 
 GPLVM -- Noteable application
 ========================================================
-<br><br>
+
 <DIV ALIGN=CENTER>
-<img src="images/teichman.png" width="45%" height="70%" />
+<img src="images/teichman.png" width="60%" height="70%" />
 <img src="images/malaria.png" width="70%" height="70%" />
 </DIV>
 
@@ -523,11 +531,10 @@ GPLVM -- Noteable application
 GPLVM
 ========================================================
 class: small-code
-<br>
 <DIV ALIGN=CENTER>
 <img src="images/gplvm.png" width="45%" height="70%" />
 <img src="images/uncertain.png" width="45%" height="70%" />
-</DIV> <br>
+</DIV> 
 ```{r, eval = FALSE}
 > cor(gplvm_means, as.numeric(time))^2
 
@@ -537,12 +544,10 @@ class: small-code
 GPLVM versus PCA 1
 ========================================================
 class: small-code
-<br>
 <DIV ALIGN=CENTER>
 <img src="images/pc1.png" width="45%" height="70%" />
 <img src="images/gplvm.png" width="45%" height="70%" />
-</DIV> <br>
-
+</DIV> 
 ```{r, eval = FALSE}
 
 > cor(pca$rotation[,1], as.numeric(time))^2
@@ -557,7 +562,6 @@ class: small-code
 
 GPLVM versus PCA 2
 ========================================================
-<br>
 <DIV ALIGN=CENTER>
 <img src="images/PCAvGPLVM.png" width="70%" height="70%" />
 </DIV> <br>
@@ -576,14 +580,12 @@ Wrapping up...
 
 Detailed look at early embryo neurogenesis? 
 ========================================================
-<br>
 <DIV ALIGN=CENTER>
 <img src="images/10x.png" width="90%" height="70%" />
 </DIV> <br>
 
 
 ========================================================
-<br>
 <DIV ALIGN=CENTER>
 <img src="images/HCA.png" width="45%" height="70%" />
 <img src="images/zuck2.png" width=60%" height="70%" />
