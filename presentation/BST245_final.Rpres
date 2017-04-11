@@ -32,7 +32,7 @@
 
 </style>
 
-Inferring Cellular Developmental Time
+Inference of Cellular Developmental Time
 ========================================================
 transition-speed: default
 transition: fade
@@ -141,8 +141,7 @@ Proserpio and Mahata, Immunology 2015
 ========================================================
 
 <DIV ALIGN=CENTER>
-<img src="images/blood.png" width="20%" height="80%" />
-<img src="images/orderResult.png" width="80%" height="80%" />
+<img src="images/fig1campbell.png" width="100%" height="80%" />
 </DIV><br>
 
 
@@ -310,7 +309,7 @@ Computing PCA
 $\mathbf{Y}$ is a $D$ x $n$ matrix. Compute the covariance matrix--
 
 $$ \mathbf{\Sigma} = E(\mathbf{YY^{T}}) - \mathbf{\mu \mu^T}$$
-where $\mu = E(Y)$ <br>
+where $\mathbf{\mu} = E(\mathbf{Y})$ <br>
 
 Then compute the spectral decomposition of $\mathbf{\Sigma}$
 
@@ -336,9 +335,8 @@ PCA
 ========================================================
 class: small-code
 <DIV ALIGN=CENTER>
-<img src="images/pc1.png" width="50%" height="30%" />
+<img src="images/pc1.png" width="70%" height="30%" />
 </DIV>
-<br>
 ```{r, eval = FALSE}
 > cor(pca$rotation[,1], as.numeric(time))^2
 
@@ -448,7 +446,7 @@ Then we can integrate out the latent variables--
 
 $$p( Y_i |\mathbf{W}, \mathbf{\Psi})= \int p( Y_i | x_i , \mathbf{W, \Psi}) p(x_i) dx_i  $$
 
-Under this specification, we can write the MVN distribution for our observations-- <br><br>$$ Y \sim  \mathcal{N} (0, \mathbf{C}), \mathbf{C} = \mathbf{WW^T }+ \mathbf{\Psi}  $$
+Under this specification, we can write the MVN distribution for our observations-- <br><br>$$\mathbf{Y} \sim  \mathcal{N} (0, \mathbf{C}), \mathbf{C} = \mathbf{WW^T }+ \mathbf{\Psi}  $$
 
 Computing PCA via Factor Analysis
 ========================================================
@@ -457,13 +455,19 @@ Young-Whittle Factor Analysis (1950s)
 <br><br>
 $\psi_i$ element of the diagonal of $\Psi$; add constraint $\psi_i = \sigma^2$<br><br>
 Assume $\sigma^2$ known, MLE yields same $W$ as PCA <br><br>
-$$  \mathcal{L} = \tfrac{-N}{2}\{ D\log(2\pi) + \log|C| + \textrm{tr}(C^{-1}\Sigma)  \}   $$
+$$  \mathcal{L} = \tfrac{-N}{2}\{ D\log(2\pi) + \log|\mathbf{C}| + \textrm{tr}(\mathbf{C}^{-1}\mathbf{\Sigma})  \}   $$<br>
+$$\mathbf{C} = \mathbf{WW^T }+ \mathbf{\Psi} $$ <br>
+$$  \mathbf{x} = \mathbf{C^{-1}W^{T}Y}$$
 
 Probablistic PCA (Tipping and Bishop)
 ========================================================
 - Assuming $\sigma^2$ may not be reasonable; want to estimate it from the data (keep in likelihood)
-- Can estimate using EM
+- Can estimate $\mathbf{W}, \sigma^2$ using EM & with a prior over $\mathbf{x}$
 
+For  $\mathbf{W_{\textrm{MLE}}}$, <br><br> $$\sigma_{MLE}^2 = \dfrac{1}{D-d} \sum_{j = d +1}^D \lambda_j $$
+
+- Similarly, we can integrate over $\mathbf{W}$ given a prior, yielding <br><br>
+$$  \mathbf{x} \sim  \mathcal{N} (\mathbf{C^{-1}W^{T}Y}, \sigma^2C^{-1})$$ <br>
 
 Bayesian  PCA
 ========================================================
@@ -501,6 +505,25 @@ resBPCA <- pca(data, method="bpca", center=FALSE, nPcs=5)
 <br><br>
 <DIV ALIGN=CENTER>
 <img src="images/Lawrence.png" width="90%" height="70%" />
+</DIV>
+
+Non-linear
+========================================================
+<br>
+$$\mathbf{Y} \sim  \mathcal{N} (0, \mathbf{C}), \mathbf{C} = \mathbf{WW^T }+ \mathbf{\Psi}$$
+<br>
+$$\mathbf{C}(\mathbf{W_i},\mathbf{W_j}) = \mathbf{W_i^T}\mathbf{W_j} + \sigma^2\delta_{ij}$$
+<br>
+$$\mathbf{C}(\mathbf{W_i},\mathbf{W_j}) = \theta_{rbf}\exp\Big(\dfrac{-\gamma}{2}(\mathbf{W_i}-\mathbf{W_j})^{T}(\mathbf{W_i}-\mathbf{W_j})  \Big) + ...$$
+
+- (2) being a special case (linear, iid) of (3)
+- Computationally more challenging, but there are fast algorithms out there
+
+GPLVM
+========================================================
+<DIV ALIGN=CENTER>
+<img src="images/kc1.png" width="70%" height="70%" />
+<img src="images/kc2.png" width="90%" height="70%" />
 </DIV>
 
 GPLVM
