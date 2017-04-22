@@ -37,6 +37,7 @@ Inference of Cellular Developmental Time
 transition-speed: default
 transition: fade
 autosize: false
+output: beamer_presentation
 
 
 "From Multivariate to Longitudinal Data"<br><br>April 11, 2017
