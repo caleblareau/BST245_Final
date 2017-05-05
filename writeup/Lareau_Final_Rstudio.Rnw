@@ -5,7 +5,7 @@
 
 \documentclass[english, 11pt]{article}
 \usepackage[T1]{fontenc}
-\usepackage[latin9]{inputenc}
+%\usepackage[latin9]{inputenc}
 \usepackage{geometry}
 \geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 \usepackage{float}
@@ -96,7 +96,7 @@ A small simulation study or application to existing dataset.
 
 
 
-
+AML ~\cite{corces2016lineage}
 
 
 
@@ -113,14 +113,8 @@ The big takeaways.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{References}
 
-\begin{itemize}
-
-\item Kauermann, G. and Carroll, R. (2001)
-A note on the efficiency of sandwich covariance matrix estimation. 
-\textit{Journal of the American Statistical Association}, \textbf{96} 1387--1396.
-
-\end{itemize}
+\bibliography{Lareau245Final}{}
+\bibliographystyle{plain}
 
 \end{document}
