@@ -11,7 +11,7 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{babel}
-\begin{document}
+ \begin{document}
 
 
 
@@ -19,7 +19,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title Page
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Probabilistic, Unsupervised Learning of Cellular Development Time}
+\title{Unsupervised Learning of Cellular Development Time}
 
 
 \author{Caleb Lareau}
@@ -28,7 +28,7 @@
 \date{11 May 2017}
 \maketitle
 \begin{abstract}
-Charac
+\noindent Recent advances in microfluidic technologies have enabled an unprecedented characterization of epigenomic and transcriptomic profiles of single cells. Though the dimension of the single cell feature space often exceeds 20,000, a commonly desired yet unobserved variable associated with cellular development time must be estimated using computational methods. Herein, I motivate the identification of this latent dimension termed \textit{pseudotime} and contextualize its inference as an application of unsupervised learning. Moreover, I present the statistical basis of both linear (principal component analysis; PCA) and non-linear (Gaussian process latent variable modeling; GPLVM) dimension reduction from a probabilistic perspective. To evaluate the performance of the methods of unsupervised learning in this context, I examine the inferred pseudotime against the true developmental ordering of murine embryonic stem cell development. 
 
 \newpage{}
 \end{abstract}
@@ -42,9 +42,26 @@ Charac
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+wherein the couple has already pledged over \$50 million to profile an estimated 35 trillion cells from various stages of human development. \cite{HCA}
 
-Start with some background and motivation on the topic. Why do we
-care about this problem?
+The establishment of biomarkers related to early versus late development in hematopoesis acute myeloid leukemia (AML). \cite{corces2016lineage} 
+
+Recently reviewed in \cite{cannoodt2016computational}
+
+single cell heme atac \cite{buenrostro2017single}
+
+PCA \cite{jolliffe2002principal}
+
+pPCA \cite{tipping1999probabilistic}
+
+In the 1940s and 1950s, Whittle\cite{whittle1952principal} and Young \cite{young1941maximum} provided a likelihood-based framework that enabled the derivations of principal components using a factor analysis framework. Notably, this likelihood-based framework enabled a probablistic interpretation of PCA, enabling uncertainty in both the components and the loadings to be estimated from a posterior distribution. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=1.0]{images/fig1campbell.png}
+\end{center}
+\caption{\textbf{Overview of single-cell sample collection and developmental ordering.} (A) For a set of cells (each single cell is indicated by a circle), a true developmental time associated with its development is a latent variable (indicated by the color gradient) that accounts for some variance in the transcriptomic profiles. (B) While this developmental time is a true feature of these cells, current technologies do not allow for the capture of this physical/developmental time ordering. (C) Thus, computational and statistical approaches are required to approximate the developmental time. This approximation is referred to as \textit{pseudotime}. (D) . Image reproduced without permission from \cite{campbell2016order}. }
+\end{figure}
 
 
 \subsection{Subsection }
@@ -60,7 +77,12 @@ in another way, feel free to go without.
 
 Introduce your notation and clearly define your assumptions. 
 
-
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.3]{images/Figure2.png}
+\end{center}
+\caption{\textbf{Data summary for single cell analysis setting.} (A) An example of a ``perfect" latent dimension (x-axis) where the true ordering of the nine embryonic states (y-axis) is inferred. (B) The comparison of the true developmental ordering (y-axis) against a linear unsupervised learning dimension (principal component 1), indicating a modest}
+\end{figure}
 
 
 
@@ -80,23 +102,22 @@ Present the statistical methods.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Simulation/Data Application}
-
+\section{Data Application}
+From mice \cite{deng2014single}
 A small simulation study or application to existing dataset.
 
 \begin{figure}[H]
-\begin{minipage}[t]{1\columnwidth}
 \begin{center}
-% Change the string to wherever your image happens to be
-%\includegraphics[scale=0.2]{\string"/Users/ryansun/Desktop/sim1".png}
-\par\end{center}%
-\end{minipage}\protect\caption{Perhaps you would like to include a figure.}
+\includegraphics[scale=0.8]{images/Figure3.pdf}
+\end{center}
+\caption{\textbf{Summary of unsupervised learning results applied to murine embyronic stem cell development.} (A) An example of a ``perfect" latent dimension (x-axis) where the true ordering of the nine embryonic states (y-axis) is inferred ($r^2 = 0.88$). (B) The comparison of the true developmental ordering (y-axis) against a linear unsupervised learning dimension (principal component 1), indicating a decent approximation of true developmental ordering ($r^2 = 0.59$). (C) Barplot depicting the $r^2$ for the first 20 principal components similar to what was shown for PC1 in (B). This plot suggests that a non-linear dimension reduction may best approximate the true developmental ordering. (D) The comparison of the true developmental ordering (y-axis) against a non-linear unsupervised learning dimension (Gaussian Process latent variable 1), indicating a better approximation of true developmental ordering ($r^2 = 0.78$). (E) Comparison of linear (y-axis; PC1) and non-linear (x-axis; GP latent variable 1) reduced dimensions. The non-linear unsupervised learning technique separates day 8 and day 16 development from the blastocyst samples. (F) Uncertainty associated with GP latent variable 1 depicted with the 95\% posterior confidence interval. }
 \end{figure}
 
 
 
 
-AML ~\cite{corces2016lineage}
+
+GPLVM \cite{lawrence2004gaussian}
 
 
 
@@ -104,17 +125,13 @@ AML ~\cite{corces2016lineage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-The big takeaways.
+GPLVM have recently been applied to resolve Th1/Tfh fate bifurcation in mice exposed to malaria, providing novel insights into the genetic perturbations associated with T-cell response and memory to foreign antigens. \cite{lonnberg2017single} More generally, Welch $et$ $al.$ showed that GPLVM provide a flexible means to infer development ordering in single cells using not just RNA profiles but also chromatin accessibility, methylation, and histone modifications derived from single-cell experiments. \cite{welch2017manifold}
 
-
-
-
-
+\newpage{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\bibliographystyle{ieeetr}
 \bibliography{Lareau245Final}{}
-\bibliographystyle{plain}
 
 \end{document}

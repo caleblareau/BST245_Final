@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  5 MAY 2017 14:38
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  6 MAY 2017 13:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -276,14 +276,25 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 80.
 [1
 
-] (./Lareau_Final_Rstudio.bbl) [2] (./Lareau_Final_Rstudio.aux) ) 
-Here is how much of TeX's memory you used:
- 2386 strings out of 493706
- 31912 string characters out of 6145769
- 93146 words of memory out of 5000000
- 5713 multiletter control sequences out of 15000+600000
- 13524 words of font info for 33 fonts, out of 8000000 for 9000
- 1328 hyphenation exceptions out of 8191
- 25i,6n,23p,278b,235s stack positions out of 5000i,500n,10000p,200000b,80000s
+]
+File: images/fig1campbell.png Graphic file (type QTm)
+ <use  "images/fig1campbell.png" > [2]
+File: images/Figure2.png Graphic file (type QTm)
+ <use  "images/Figure2.png" >
+File: images/Figure3.pdf Graphic file (type QTm)
 
-Output written on Lareau_Final_Rstudio.pdf (2 pages).
+<use  "images/Figure3.pdf" >
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 164.
+ [3] [4] [5] (./Lareau_Final_Rstudio.bbl) [6]
+(./Lareau_Final_Rstudio.aux) ) 
+Here is how much of TeX's memory you used:
+ 2414 strings out of 493706
+ 32363 string characters out of 6145769
+ 96198 words of memory out of 5000000
+ 5733 multiletter control sequences out of 15000+600000
+ 15609 words of font info for 37 fonts, out of 8000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 25i,7n,23p,1378b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Lareau_Final_Rstudio.pdf (6 pages).

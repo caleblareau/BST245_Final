@@ -1,11 +1,70 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{HCA}
+I.~Sample, ``Human cell atlas project aims to map the human body's 35 trillion
+  cells.,'' {\em The Guardian}, p.~Published 14 Oct. 2016; Accessed 02 May
+  2017.
 
 \bibitem{corces2016lineage}
-M~Ryan Corces, Jason~D Buenrostro, Beijing Wu, Peyton~G Greenside, Steven~M
-  Chan, Julie~L Koenig, Michael~P Snyder, Jonathan~K Pritchard, Anshul Kundaje,
-  William~J Greenleaf, et~al.
-\newblock Lineage-specific and single-cell chromatin accessibility charts human
-  hematopoiesis and leukemia evolution.
-\newblock {\em Nature genetics}, 2016.
+M.~R. Corces, J.~D. Buenrostro, B.~Wu, P.~G. Greenside, S.~M. Chan, J.~L.
+  Koenig, M.~P. Snyder, J.~K. Pritchard, A.~Kundaje, W.~J. Greenleaf, {\em
+  et~al.}, ``Lineage-specific and single-cell chromatin accessibility charts
+  human hematopoiesis and leukemia evolution,'' {\em Nature Genetics}, 2016.
+
+\bibitem{cannoodt2016computational}
+R.~Cannoodt, W.~Saelens, and S.~Yvan, ``Computational methods for trajectory
+  inference from single-cell transcriptomics,'' {\em European Journal of
+  Immunology}, 2016.
+
+\bibitem{buenrostro2017single}
+J.~D. Buenrostro, W.~Greenleaf, R.~Corces, B.~Wu, A.~N. Schep, C.~Lareau,
+  R.~Majeti, and H.~Chang, ``Single-cell epigenomics maps the continuous
+  regulatory landscape of human hematopoietic differentiation,'' {\em bioRxiv},
+  p.~109843, 2017.
+
+\bibitem{jolliffe2002principal}
+I.~Jolliffe, {\em Principal component analysis}.
+\newblock Wiley Online Library, 2002.
+
+\bibitem{tipping1999probabilistic}
+M.~E. Tipping and C.~M. Bishop, ``Probabilistic principal component analysis,''
+  {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, vol.~61, no.~3, pp.~611--622, 1999.
+
+\bibitem{whittle1952principal}
+P.~Whittle, ``On principal components and least square methods of factor
+  analysis,'' {\em Scandinavian Actuarial Journal}, vol.~1952, no.~3-4,
+  pp.~223--239, 1952.
+
+\bibitem{young1941maximum}
+G.~Young, ``Maximum likelihood estimation and factor analysis,'' {\em
+  Psychometrika}, vol.~6, no.~1, pp.~49--53, 1941.
+
+\bibitem{campbell2016order}
+K.~R. Campbell and C.~Yau, ``Order under uncertainty: robust differential
+  expression analysis using probabilistic models for pseudotime inference,''
+  {\em PLOS Computational Biology}, vol.~12, no.~11, p.~e1005212, 2016.
+
+\bibitem{deng2014single}
+Q.~Deng, D.~Ramsk{\"o}ld, B.~Reinius, and R.~Sandberg, ``Single-cell rna-seq
+  reveals dynamic, random monoallelic gene expression in mammalian cells,''
+  {\em Science}, vol.~343, no.~6167, pp.~193--196, 2014.
+
+\bibitem{lawrence2004gaussian}
+N.~D. Lawrence, ``Gaussian process latent variable models for visualisation of
+  high dimensional data,'' in {\em Advances in neural information processing
+  systems}, pp.~329--336, 2004.
+
+\bibitem{lonnberg2017single}
+T.~L{\"o}nnberg, V.~Svensson, K.~R. James, D.~Fernandez-Ruiz, I.~Sebina,
+  R.~Montandon, M.~S. Soon, L.~G. Fogg, A.~S. Nair, U.~Liligeto, {\em et~al.},
+  ``Single-cell rna-seq and computational analysis using temporal mixture
+  modelling resolves th1/tfh fate bifurcation in malaria,'' {\em Science
+  immunology}, vol.~2, no.~9, 2017.
+
+\bibitem{welch2017manifold}
+J.~D. Welch, A.~J. Hartemink, and J.~F. Prins, ``Manifold alignment reveals
+  correspondence between single cell transcriptome and epigenome dynamics,''
+  {\em bioRxiv}, p.~130336, 2017.
 
 \end{thebibliography}
