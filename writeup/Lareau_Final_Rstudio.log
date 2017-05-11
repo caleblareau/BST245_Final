@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 MAY 2017 09:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 MAY 2017 10:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -516,63 +516,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 166--169
 
  []
 
-[6]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 195.
 
- (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmtt.fd
+Underfull \hbox (badness 10000) in paragraph at lines 172--176
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 184--186
+
+ []
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 190.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 194--196
+Underfull \hbox (badness 10000) in paragraph at lines 188--191
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 227--230
+Underfull \hbox (badness 10000) in paragraph at lines 203--206
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 227--230
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
 
  []
 
-[8] <images/Figure3.pdf, id=162, 548.17535pt x 525.30249pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+
+ []
+
+[8] <images/Figure3.pdf, id=168, 548.17535pt x 525.30249pt>
 File: images/Figure3.pdf Graphic file (type pdf)
 
 <use images/Figure3.pdf>
-Package pdftex.def Info: images/Figure3.pdf used on input line 234.
+Package pdftex.def Info: images/Figure3.pdf used on input line 224.
 (pdftex.def)             Requested size: 438.54088pt x 420.24255pt.
  [9]
-Underfull \hbox (badness 10000) in paragraph at lines 243--250
+Underfull \hbox (badness 10000) in paragraph at lines 233--240
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--250
+Underfull \hbox (badness 10000) in paragraph at lines 233--240
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--250
+Underfull \hbox (badness 10000) in paragraph at lines 233--240
 
  []
 
 [10 <./images/Figure3.pdf>] [11] (./Lareau_Final_Rstudio.bbl [12])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 263.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 253.
  [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 263.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 253.
 
 (./Lareau_Final_Rstudio.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 263.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 263.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 253.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 253.
 Package rerunfilecheck Info: File `Lareau_Final_Rstudio.out' has not changed.
-(rerunfilecheck)             Checksum: 94ACE7820348E0782234851FE1562570;754.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 263.
+(rerunfilecheck)             Checksum: 3D002212900CA5A4233A5256011ED57A;754.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 253.
  ) 
 Here is how much of TeX's memory you used:
- 6962 strings out of 493089
- 102598 string characters out of 6134842
- 200586 words of memory out of 5000000
+ 6961 strings out of 493089
+ 102586 string characters out of 6134842
+ 204586 words of memory out of 5000000
  10286 multiletter control sequences out of 15000+600000
  19613 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -598,10 +612,10 @@ f-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2015/texmf-di
 st/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2015/texmf-dist
 /fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on Lareau_Final_Rstudio.pdf (13 pages, 2202572 bytes).
+Output written on Lareau_Final_Rstudio.pdf (13 pages, 2210513 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 268 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 341 PDF objects out of 1000 (max. 8388607)
+ 274 compressed objects within 3 object streams
+ 52 named destinations out of 1000 (max. 500000)
  112 words of extra memory for PDF output out of 10000 (max. 10000000)
 

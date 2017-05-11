@@ -170,54 +170,44 @@ From this conditional independence, for $Y_i$ for $i \in (1, ..., n)$, $$Y_i |x_
 Then we can integrate out the latent variables--
 $$p( Y_i |\mathbf{\beta}, \mathbf{\Psi})= \int p( Y_i | x_i , \mathbf{\beta, \Psi}) p(x_i) dx_i  $$
 Under this specification, we can write the MVN distribution for our observations-- $$\mathbf{Y} \sim  \mathcal{N} (0, \mathbf{C}), \mathbf{C} = \mathbf{\beta \beta^T }+ \mathbf{\Psi}  $$
-
+Similarly, the distribution of $\mathbf{Y}$ as shown above can be expressed after integrating out the $\mathbf{\beta}$ from the conditional likelihood, which is discussed in Whittle \cite{whittle1952principal} and Young \cite{young1941maximum}. This generalized form provides the basis for principal component analysis under the specified normal likelihood as shown here. 
+\newline \newline
+While a relatively straight-forward application of the Young-Whittle Factor analysis, the most descriptive paper discussing probablistic principal component analysis (pPCA) was pubished in 1999. \cite{tipping1999probabilistic} Using the framework shown in the sections above, consider the following specification of the error model. For $\psi_i$, an element of the diagonal of $\Psi$, constraint $\psi_i = \sigma^2$ and assume $\sigma^2$ known. Then, the maximum likelihood estimator (MLE) yields same $\beta$ as PCA (discussed in greater detail in \cite{tipping1999probabilistic})
+$$  \mathcal{L} = \frac{-N}{2}\{ D\log(2\pi) + \log|\mathbf{C}| + \textrm{tr}(\mathbf{C}^{-1}\mathbf{\Sigma})  \}   $$
+$$\mathbf{C} = \mathbf{\beta\beta^T }+ \mathbf{\Psi} $$
+This computational also gives the form of the 
+$$  \mathbf{x} = \mathbf{C^{-1}\beta^{T}Y}$$
+where $\mathbf{x}$ is equivalent to the principal component matrix proposed in \textbf{3.1}.
 
 \subsection{Probablistic PCA}
 
-pPCA \cite{tipping1999probabilistic}
-
-$\psi_i$ element of the diagonal of $\Psi$; add constraint $\psi_i = \sigma^2$<br><br>
-Assume $\sigma^2$ known, MLE yields same $\beta$ as PCA <br><br>
-$$  \mathcal{L} = \frac{-N}{2}\{ D\log(2\pi) + \log|\mathbf{C}| + \textrm{tr}(\mathbf{C}^{-1}\mathbf{\Sigma})  \}   $$
-$$\mathbf{C} = \mathbf{\beta\beta^T }+ \mathbf{\Psi} $$ <br>
-$$  \mathbf{x} = \mathbf{C^{-1}\beta^{T}Y}$$
-
-Probablistic PCA (Tipping and Bishop)
-- Assuming $\sigma^2$ may not be reasonable; want to estimate it from the data (keep in likelihood)
-- Can estimate $\mathbf{\beta}, \sigma^2$ using EM and with a prior over $\mathbf{x}$
-
-For  $\mathbf{\beta_{\textrm{MLE}}}$, <br><br> $$\sigma_{MLE}^2 = \frac{1}{D-d} \sum_{j = d +1}^D \lambda_j $$
-
-- Similarly, we can integrate over $\mathbf{\beta}$ given a prior, yielding <br><br>
-$$  \mathbf{x} \sim  \mathcal{N} (\mathbf{C^{-1}\beta^{T}Y}, \sigma^2C^{-1})$$ <br>
-
-aaa \newline \newline
+A key contribution in Tipping and Bishop's 1999 paper \cite{tipping1999probabilistic} vital for pPCA (Tipping and Bishop) is that the assumption that $\sigma^2$ is known may not be reasonable, and we would want to estimate it from the data (thus keeping it in likelihood). Tipping and Bishop then propose the estimation of $\mathbf{\beta}, \sigma^2$ using EM and with a prior over $\mathbf{x}$.
+\newline \newline
+Specifically, we can estimate the parameters specified under these assumptions. For $\mathbf{\beta_{\textrm{MLE}}}$, $$\sigma_{MLE}^2 = \frac{1}{D-d} \sum_{j = d +1}^D \lambda_j $$
+Similarly, we can integrate over $\mathbf{\beta}$ given a prior, yielding--
+$$  \mathbf{x} \sim  \mathcal{N} (\mathbf{C^{-1}\beta^{T}Y}, \sigma_{MLE}^2C^{-1})$$
+where again $\mathbf{x}$ is equivalent to the principal component matrix proposed in \textbf{3.1} but coupled with a MVN to evaluate posterior uncertainty.\newline \newline
 \noindent Computational methods for inferring principal components under this likelihood framework are availabel through the \texttt{pcaMethods} \texttt{R} package.
 
-\subsection{Bayesian PCA}
-Though not utilized in this particular data application to remain purely unsupervised, a corollary of the pPCA derivation is Bayesian PCA. In brief, the statistical framework for performing linear dimensionality reduction in the likelihood framework above can be modified by specifying the distribution on these reduced dimensions \textit{a priori}. \cite{bishop1999bayesian} From Bishop's 1999 paper, \cite{bishop1999bayesian} the effect of an embedded prior variable $\alpha_i$ can be realized in the following form--
-$$p(\mathbf{\beta} |  \mathbf{\alpha}) = \prod_{i=1}^{d-1}\Big( \frac{\alpha_i}{2 \pi} \Big)^{d/2} \exp \Big \{ \frac{-1}{2}\alpha_i||\beta_i||^2\Big \}$$
-As reported in Bishop's paper, the choice of $\alpha_i$ often represents the inverse of the variance of the scalar mapping the embedded (low-dimensional) space to the data (high-dimensional) space. For large $\alpha_i$, the contribution of the latent variable is low. Methods for computing principal components with Bayesian priors and interpretations are also accessible through the \texttt{pcaMethods} \texttt{R} package and implement the EM algorithm \cite{dempster1977maximum} for computational solutions. 
 
 \subsection{Gaussian Process Latent Variable Modeling}
-
-\begin{equation}
-\mathbf{Y} \sim  \mathcal{N} (0, \mathbf{C}), \mathbf{C} = \mathbf{\beta\beta^T }+ \mathbf{\Psi}
-\end{equation}
-
+In 2004, Lawrence published a manuscript \cite{lawrence2004gaussian} noticing the specification of the distribution of the data that follows from the pPCA framework. Specifically, for the form of the distribution of the data--
+$$\mathbf{Y} \sim  \mathcal{N} (0, \mathbf{C}), \mathbf{C} = \mathbf{\beta\beta^T }+ \mathbf{\Psi}$$
+Lawrence deduced that the general form of the variance/covarance of $\mathbf{Y}$ could be represented in the following form (linear or equivalently PCA)--
 \begin{equation}
 \mathbf{C}(\mathbf{\beta_i},\mathbf{\beta_j}) = \mathbf{\beta_i^T}\mathbf{\beta_j} + \sigma^2\delta_{ij}
 \end{equation}
-
+The ``secret sauce'' of GPLVM is simply a substitution of the form of this $\mathbf{C}$ to be more accomodating to non-linear data structures. For example, a popular variance/covariance structure is the \textit{radial basis function}(rbf), which can be expressed in the following form-- 
 \begin{equation}
 \mathbf{C}(\mathbf{\beta_i},\mathbf{\beta_j}) = \theta_{rbf} \exp \Big(\frac{-\gamma}{2}(\mathbf{\beta_i}-\mathbf{\beta_j})^{T}(\mathbf{\beta_i}-\mathbf{\beta_j})  \Big) + ...
 \end{equation}
+where the $...$ represents only other hyperparamters associated with rbf functional form of the variance/covariance matrix. Additionally, GPLVM have the following properties that (1) is a special case (linear, iid, pPCA) of a more generalized variance/covarance kernel. (2) While this form (2) is more computationally more challenging to solve, the popularity of this approach for the features previously mentioned have lead to fast implementations of computing GPLVM even for large data. While some \texttt{R} implementations do exist for GPLVM, the most computationally efficient, user-friendly tool that was available of the time of writing is the \texttt{GPy ptyhon} package, available at \url{https://github.com/SheffieldML/GPy}. \newline \newline
+By introducing the GPLVM through the lens of pPCA, Lawrence \cite{lawrence2004gaussian} demonstrated a seemingly modest modification of a well-established technique that in actuality has had a dramatic effect on many data reduction and machine learning algorithms to date. 
 
-
-- (2) being a special case (linear, iid) of (3)
-- Computationally more challenging, but there are fast algorithms out there
-
-
+\subsection{Bayesian PCA}
+Though not utilized in this particular data application to remain purely unsupervised, a corollary of the pPCA derivation is Bayesian PCA. In brief, the statistical framework for performing linear dimensionality reduction in the likelihood framework in \textbf{3.3} can be modified by specifying the distribution on these reduced dimensions \textit{a priori}. \cite{bishop1999bayesian} From Bishop's 1999 paper, \cite{bishop1999bayesian} the effect of an embedded prior variable $\alpha_i$ can be realized in the following form--
+$$p(\mathbf{\beta} |  \mathbf{\alpha}) = \prod_{i=1}^{d-1}\Big( \frac{\alpha_i}{2 \pi} \Big)^{d/2} \exp \Big \{ \frac{-1}{2}\alpha_i||\beta_i||^2\Big \}$$
+As reported in Bishop's paper, the choice of $\alpha_i$ often represents the inverse of the variance of the scalar mapping the embedded (low-dimensional) space to the data (high-dimensional) space. For large $\alpha_i$, the contribution of the latent variable is low. Methods for computing principal components with Bayesian priors and interpretations are also accessible through the \texttt{pcaMethods} \texttt{R} package and implement the EM algorithm \cite{dempster1977maximum} for computational solutions. 
 
 
 
