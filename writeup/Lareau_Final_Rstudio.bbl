@@ -89,6 +89,11 @@ M.~E. Tipping and C.~M. Bishop, ``Probabilistic principal component analysis,''
 C.~M. Bishop, ``Bayesian pca,'' in {\em Proceedings of the 1998 conference on
   Advances in neural information processing systems II}, pp.~382--388, 1999.
 
+\bibitem{dempster1977maximum}
+A.~P. Dempster, N.~M. Laird, and D.~B. Rubin, ``Maximum likelihood from
+  incomplete data via the em algorithm,'' {\em Journal of the royal statistical
+  society. Series B (methodological)}, pp.~1--38, 1977.
+
 \bibitem{welch2017manifold}
 J.~D. Welch, A.~J. Hartemink, and J.~F. Prins, ``Manifold alignment reveals
   correspondence between single cell transcriptome and epigenome dynamics,''
