@@ -22,6 +22,16 @@ J.~D. Buenrostro, W.~Greenleaf, R.~Corces, B.~Wu, A.~N. Schep, C.~Lareau,
   regulatory landscape of human hematopoietic differentiation,'' {\em bioRxiv},
   p.~109843, 2017.
 
+\bibitem{campbell2016order}
+K.~R. Campbell and C.~Yau, ``Order under uncertainty: robust differential
+  expression analysis using probabilistic models for pseudotime inference,''
+  {\em PLOS Computational Biology}, vol.~12, no.~11, p.~e1005212, 2016.
+
+\bibitem{hastie2009springer}
+T.~Hastie, R.~Tibshirani, and J.~Friedman, ``Springer series in statistics,''
+  {\em The elements of statistical learning: data mining, inference, and
+  prediction}, 2009.
+
 \bibitem{jolliffe2002principal}
 I.~Jolliffe, {\em Principal component analysis}.
 \newblock Wiley Online Library, 2002.
@@ -40,13 +50,8 @@ P.~Whittle, ``On principal components and least square methods of factor
 G.~Young, ``Maximum likelihood estimation and factor analysis,'' {\em
   Psychometrika}, vol.~6, no.~1, pp.~49--53, 1941.
 
-\bibitem{campbell2016order}
-K.~R. Campbell and C.~Yau, ``Order under uncertainty: robust differential
-  expression analysis using probabilistic models for pseudotime inference,''
-  {\em PLOS Computational Biology}, vol.~12, no.~11, p.~e1005212, 2016.
-
 \bibitem{bishop1999bayesian}
-C.~M. Bishop, ``Bayesian pea,'' in {\em Proceedings of the 1998 conference on
+C.~M. Bishop, ``Bayesian pca,'' in {\em Proceedings of the 1998 conference on
   Advances in neural information processing systems II}, pp.~382--388, 1999.
 
 \bibitem{deng2014single}

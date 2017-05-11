@@ -5,7 +5,7 @@
 
 \documentclass[english, 11pt]{article}
 \usepackage[T1]{fontenc}
-%\usepackage[latin9]{inputenc}
+\usepackage[latin9]{inputenc}
 \usepackage{geometry}
 \geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 \usepackage{float}
@@ -13,7 +13,6 @@
 \usepackage{babel}
 \usepackage{hyperref}
 \usepackage{bm}
-\usepackage[T1]{fontenc}
 
 \begin{document}
 
@@ -43,32 +42,46 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-wherein the couple has already pledged over \$50 million to profile an estimated 35 trillion cells from various stages of human development. \cite{HCA}
+
+A fundamental question in developmental biology is how organisms such as humans and mice that originate as single zygotes mature into complex entities composed of trillions of cells in adulthood. Moreover, identifying the longitudinal genetic and epigenetic factors that control stages of development is critical for understanding disease presentation and manifestation.  Recent technological advances have enabled a high-throughput characterization of single cells, providing a formidable means of identifying factors critical in complex organism development and disease. In particular, the breakthroughs in microfluidic capture and sequencing of RNA from single cells (scRNA-Seq) has incited the development of a ``Human Cell Atlas,'' which expects to profile an estimated 35 trillion cells from various stages of human development over the next decade. \cite{HCA} 
+\newline  \newline 
+\noindent With this unprecendented source of human cellular data, robust statistical and computational frameworks are needed to extract meaningful structure from the Human Cell Atlas and similar single cell profiles to answer these fundamental questions in developmental biology. In particular, low-dimension latent features like cell-cycle stage and developmental time are often desired to be inferred from a higher dimension feature set (\textit{i.e.} $> 20,000$ gene expression values per cell). As these latent characteristics are often unobserved from single cell capture technologies, these analysis questions motivate the use of unsupervised learning approaches to approximate latent variables in high-dimensional data. 
+
+
+\subsection{Pseudotime ordering of single cells}
+
 
 The establishment of biomarkers related to early versus late development in hematopoesis acute myeloid leukemia (AML). \cite{corces2016lineage} 
+
+ 
 
 Recently reviewed in \cite{cannoodt2016computational}
 
 single cell heme atac \cite{buenrostro2017single}
 
-PCA \cite{jolliffe2002principal}
 
-pPCA \cite{tipping1999probabilistic}
-
-In the 1940s and 1950s, Whittle\cite{whittle1952principal} and Young \cite{young1941maximum} provided a likelihood-based framework that enabled the derivations of principal components using a factor analysis framework. Notably, this likelihood-based framework enabled a probablistic interpretation of PCA, enabling uncertainty in both the components and the loadings to be estimated from a posterior distribution. 
+In brief, the inference of cellular pseudotime as a latent variable can be represented as a specific application of unsupervised learning. 
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=1.0]{images/fig1campbell.png}
 \end{center}
-\caption{\textbf{Overview of single-cell sample collection and developmental ordering.} (A) For a set of cells (each single cell is indicated by a circle), a true developmental time associated with its development is a latent variable (indicated by the color gradient) that accounts for some variance in the transcriptomic profiles. (B) While this developmental time is a true feature of these cells, current technologies do not allow for the capture of this physical/developmental time ordering. (C) Thus, computational and statistical approaches are required to approximate the developmental time. This approximation is referred to as \textit{pseudotime}. (D) . Image reproduced without permission from \cite{campbell2016order}. }
+\caption{\textbf{Overview of single-cell sample collection and developmental ordering.} (A) For a set of cells (each single cell is indicated by a circle), a true developmental time associated with its development is a latent variable (indicated by the color gradient) that accounts for a large proportion of the variance in the transcriptomic profiles. (B) While this developmental time is a true feature of these cells, current technologies do not allow for the capture of this physical/developmental time ordering (except for rare exceptions). (C) Thus, computational and statistical approaches are required to approximate the developmental time. This approximation is referred to as \textit{pseudotime}. (D) Once ordering of cells can be approximated, significant genetic factors responsible for a developmental process can be inferred. Image reproduced without permission from \cite{campbell2016order}. }
 \end{figure}
 
 
-\subsection{Subsection }
+\subsection{Unsupervised learning}
 
-If you don't need subsections or would prefer to organize your paragraphs
-in another way, feel free to go without.
+Unsupervised learning is a term used to describe the inference of hidden structure from ``unlabeled'' data \cite{hastie2009springer}.  In contrast to supervised or reinforcement learning, the accuracy of the structure that is inferred by the algorithm cannot be obtained.  In traditional inferential statistics, a popular form of unsupervised learning is method of moments where unknown parameters are related to the moments of random variables \cite{hastie2009springer}. Using moment-based estimators and the form of the relationship between the random variables and the parameters, one can estimate the values of these unknown parameters. 
+
+PCA \cite{jolliffe2002principal}
+
+pPCA \cite{tipping1999probabilistic}
+
+
+\subsection{Uncertainty in latent variables}
+
+In the 1940s and 1950s, Whittle\cite{whittle1952principal} and Young \cite{young1941maximum} provided a likelihood-based framework that enabled the derivations of principal components using a factor analysis framework. Notably, this likelihood-based framework enabled a probablistic interpretation of PCA, enabling uncertainty in both the components and the loadings to be estimated from a posterior distribution. 
 
 
 
@@ -82,7 +95,7 @@ Introduce your notation and clearly define your assumptions.
 \begin{center}
 \includegraphics[scale=0.3]{images/Figure2.png}
 \end{center}
-\caption{\textbf{Data summary for single cell analysis setting.} (A) An example of a ``perfect" latent dimension (x-axis) where the true ordering of the nine embryonic states (y-axis) is inferred. (B) The comparison of the true developmental ordering (y-axis) against a linear unsupervised learning dimension (principal component 1), indicating a modest}
+\caption{\textbf{Data summary for single cell analysis setting.} (A) An example of a ``perfect'' latent dimension (x-axis) where the true ordering of the nine embryonic states (y-axis) is inferred. (B) The comparison of the true developmental ordering (y-axis) against a linear unsupervised learning dimension (principal component 1), indicating a modest}
 \end{figure}
 
 
@@ -92,22 +105,18 @@ Introduce your notation and clearly define your assumptions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 
-Present the statistical methods.
+Over a dozen computational approaches have been proposed to infer pseudotime from scRNA-Seq data (recently reviewed in \cite{cannoodt2016computational}) though nearly all of these methods 1) do not provide an explicit form of pseudotime inference or 2) allow for uncertainty in the resulting pseudotime estimations. 
 
 \subsection{Principal component analysis}
-$\mathbf{Y}$ is a $D$ x $n$ matrix. Compute the covariance matrix--
+
+PCA is a form of unsupervised learning through linear dimensionality reduction. Though many different methods have been proposed to compute the principal components of a matrix, the following approach is most common. For a matrix $\mathbf{Y}$ with dimension $M$ x $N$  (as shown in \textbf{Figure 2(A)}), the covariance matrix can be computed--
 
 $$ \mathbf{\Sigma} = E(\mathbf{YY^{T}}) - \mathbf{\mu \mu^T}$$
-where $\mathbf{\mu} = E(\mathbf{Y})$ <br>
-
-Then compute the spectral decomposition of $\mathbf{\Sigma}$
+where $\mathbf{\mu} = E(\mathbf{Y})$. Next, the spectral decomposition of the covariance matrix $\mathbf{\Sigma}$ can be computed using the following form--
 
 $$\mathbf{\Sigma} a_j = \lambda_j a_j$$
-for $j \in (1, ..., D)$
-<br><br>
-Then $a_j$ represent the eigenvectors of the data matrix $\mathbf{Y}$. <br> Note the ordering of $j$ is meaningful-- 
+for $j \in (1, ..., D)$. Then $a_j$ represent the eigenvectors of the data matrix $\mathbf{Y}$. Note the ordering of $j$ is meaningful-- 
 $$ \lambda_1 \geq \lambda_2 \geq ... \geq \lambda_D \geq 0$$
-
 
 \subsection{Factor analysis}
 
@@ -174,7 +183,7 @@ A small simulation study or application to existing dataset.
 \begin{center}
 \includegraphics[scale=0.8]{images/Figure3.pdf}
 \end{center}
-\caption{\textbf{Summary of unsupervised learning results applied to murine embyronic stem cell development.} (A) An example of a ``perfect" latent dimension (x-axis) where the true ordering of the nine embryonic states (y-axis) is inferred ($r^2 = 0.88$). (B) The comparison of the true developmental ordering (y-axis) against a linear unsupervised learning dimension (principal component 1), indicating a decent approximation of true developmental ordering ($r^2 = 0.59$). (C) Barplot depicting the $r^2$ for the first 20 principal components similar to what was shown for PC1 in (B). This plot suggests that a non-linear dimension reduction may best approximate the true developmental ordering. (D) The comparison of the true developmental ordering (y-axis) against a non-linear unsupervised learning dimension (Gaussian Process latent variable 1), indicating a better approximation of true developmental ordering ($r^2 = 0.78$). (E) Comparison of linear (y-axis; PC1) and non-linear (x-axis; GP latent variable 1) reduced dimensions. The non-linear unsupervised learning technique separates day 8 and day 16 development from the blastocyst samples. (F) Uncertainty associated with GP latent variable 1 depicted with the 95\% posterior confidence interval. }
+\caption{\textbf{Summary of unsupervised learning results applied to murine embyronic stem cell development.} (A) An example of a ``perfect'' latent dimension (x-axis) where the true ordering of the nine embryonic states (y-axis) is inferred ($r^2 = 0.88$). (B) The comparison of the true developmental ordering (y-axis) against a linear unsupervised learning dimension (principal component 1), indicating a decent approximation of true developmental ordering ($r^2 = 0.59$). (C) Barplot depicting the $r^2$ for the first 20 principal components similar to what was shown for PC1 in (B). This plot suggests that a non-linear dimension reduction may best approximate the true developmental ordering. (D) The comparison of the true developmental ordering (y-axis) against a non-linear unsupervised learning dimension (Gaussian Process latent variable 1), indicating a better approximation of true developmental ordering ($r^2 = 0.78$). (E) Comparison of linear (y-axis; PC1) and non-linear (x-axis; GP latent variable 1) reduced dimensions. The non-linear unsupervised learning technique separates day 8 and day 16 development from the blastocyst samples. (F) Uncertainty associated with GP latent variable 1 depicted with the 95\% posterior confidence interval. The uncertainty computed in the posterior distribution provides a probablistic measure for pseudotime ordering of these single cell samples. }
 \end{figure}
 
 
@@ -193,7 +202,7 @@ GPLVM have recently been applied to resolve Th1/Tfh fate bifurcation in mice exp
 
 \section*{Accessibility}
 
-All code and data used to generate the figures, slides, and writeup are made publicly available at \url{https://github.com/caleblareau/BST245_Final}.
+All code and data used to generate the figures, slides, and writeup are made publicly available at \url{https://github.com/caleblareau/BST245_Final}. An \texttt{R} package for running GPLVM (specifically tailored to single-cell data) is distributed through \texttt{Github} and can be installed typing the following command into an \texttt{R} console: \url{devtools::install_github("kieranrcampbell/pseudogp")}.  The \texttt{pcaMethods R} package for running PCA, Bayesian PCA, and Probablistic PCA is distributed via \texttt{Bioconductor} and is available at \url{http://bioconductor.org/packages/release/bioc/html/pcaMethods.html}.
 
 \newpage{}
 
