@@ -41,6 +41,12 @@ N.~D. Lawrence, ``Gaussian process latent variable models for visualisation of
   high dimensional data,'' in {\em Advances in neural information processing
   systems}, pp.~329--336, 2004.
 
+\bibitem{macosko2015highly}
+E.~Z. Macosko, A.~Basu, R.~Satija, J.~Nemesh, K.~Shekhar, M.~Goldman,
+  I.~Tirosh, A.~R. Bialas, N.~Kamitaki, E.~M. Martersteck, {\em et~al.},
+  ``Highly parallel genome-wide expression profiling of individual cells using
+  nanoliter droplets,'' {\em Cell}, vol.~161, no.~5, pp.~1202--1214, 2015.
+
 \bibitem{deng2014single}
 Q.~Deng, D.~Ramsk{\"o}ld, B.~Reinius, and R.~Sandberg, ``Single-cell rna-seq
   reveals dynamic, random monoallelic gene expression in mammalian cells,''
@@ -52,6 +58,13 @@ T.~L{\"o}nnberg, V.~Svensson, K.~R. James, D.~Fernandez-Ruiz, I.~Sebina,
   ``Single-cell rna-seq and computational analysis using temporal mixture
   modelling resolves th1/tfh fate bifurcation in malaria,'' {\em Science
   immunology}, vol.~2, no.~9, 2017.
+
+\bibitem{buettner2015computational}
+F.~Buettner, K.~N. Natarajan, F.~P. Casale, V.~Proserpio, A.~Scialdone, F.~J.
+  Theis, S.~A. Teichmann, J.~C. Marioni, and O.~Stegle, ``Computational
+  analysis of cell-to-cell heterogeneity in single-cell rna-sequencing data
+  reveals hidden subpopulations of cells,'' {\em Nature biotechnology},
+  vol.~33, no.~2, pp.~155--160, 2015.
 
 \bibitem{whittle1952principal}
 P.~Whittle, ``On principal components and least square methods of factor
