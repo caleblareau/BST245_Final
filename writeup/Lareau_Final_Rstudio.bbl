@@ -11,16 +11,16 @@ M.~R. Corces, J.~D. Buenrostro, B.~Wu, P.~G. Greenside, S.~M. Chan, J.~L.
   et~al.}, ``Lineage-specific and single-cell chromatin accessibility charts
   human hematopoiesis and leukemia evolution,'' {\em Nature Genetics}, 2016.
 
-\bibitem{cannoodt2016computational}
-R.~Cannoodt, W.~Saelens, and S.~Yvan, ``Computational methods for trajectory
-  inference from single-cell transcriptomics,'' {\em European Journal of
-  Immunology}, 2016.
-
 \bibitem{buenrostro2017single}
 J.~D. Buenrostro, W.~Greenleaf, R.~Corces, B.~Wu, A.~N. Schep, C.~Lareau,
   R.~Majeti, and H.~Chang, ``Single-cell epigenomics maps the continuous
   regulatory landscape of human hematopoietic differentiation,'' {\em bioRxiv},
   p.~109843, 2017.
+
+\bibitem{cannoodt2016computational}
+R.~Cannoodt, W.~Saelens, and S.~Yvan, ``Computational methods for trajectory
+  inference from single-cell transcriptomics,'' {\em European Journal of
+  Immunology}, 2016.
 
 \bibitem{campbell2016order}
 K.~R. Campbell and C.~Yau, ``Order under uncertainty: robust differential
@@ -36,10 +36,22 @@ T.~Hastie, R.~Tibshirani, and J.~Friedman, ``Springer series in statistics,''
 I.~Jolliffe, {\em Principal component analysis}.
 \newblock Wiley Online Library, 2002.
 
-\bibitem{tipping1999probabilistic}
-M.~E. Tipping and C.~M. Bishop, ``Probabilistic principal component analysis,''
-  {\em Journal of the Royal Statistical Society: Series B (Statistical
-  Methodology)}, vol.~61, no.~3, pp.~611--622, 1999.
+\bibitem{lawrence2004gaussian}
+N.~D. Lawrence, ``Gaussian process latent variable models for visualisation of
+  high dimensional data,'' in {\em Advances in neural information processing
+  systems}, pp.~329--336, 2004.
+
+\bibitem{deng2014single}
+Q.~Deng, D.~Ramsk{\"o}ld, B.~Reinius, and R.~Sandberg, ``Single-cell rna-seq
+  reveals dynamic, random monoallelic gene expression in mammalian cells,''
+  {\em Science}, vol.~343, no.~6167, pp.~193--196, 2014.
+
+\bibitem{lonnberg2017single}
+T.~L{\"o}nnberg, V.~Svensson, K.~R. James, D.~Fernandez-Ruiz, I.~Sebina,
+  R.~Montandon, M.~S. Soon, L.~G. Fogg, A.~S. Nair, U.~Liligeto, {\em et~al.},
+  ``Single-cell rna-seq and computational analysis using temporal mixture
+  modelling resolves th1/tfh fate bifurcation in malaria,'' {\em Science
+  immunology}, vol.~2, no.~9, 2017.
 
 \bibitem{whittle1952principal}
 P.~Whittle, ``On principal components and least square methods of factor
@@ -50,26 +62,14 @@ P.~Whittle, ``On principal components and least square methods of factor
 G.~Young, ``Maximum likelihood estimation and factor analysis,'' {\em
   Psychometrika}, vol.~6, no.~1, pp.~49--53, 1941.
 
+\bibitem{tipping1999probabilistic}
+M.~E. Tipping and C.~M. Bishop, ``Probabilistic principal component analysis,''
+  {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, vol.~61, no.~3, pp.~611--622, 1999.
+
 \bibitem{bishop1999bayesian}
 C.~M. Bishop, ``Bayesian pca,'' in {\em Proceedings of the 1998 conference on
   Advances in neural information processing systems II}, pp.~382--388, 1999.
-
-\bibitem{deng2014single}
-Q.~Deng, D.~Ramsk{\"o}ld, B.~Reinius, and R.~Sandberg, ``Single-cell rna-seq
-  reveals dynamic, random monoallelic gene expression in mammalian cells,''
-  {\em Science}, vol.~343, no.~6167, pp.~193--196, 2014.
-
-\bibitem{lawrence2004gaussian}
-N.~D. Lawrence, ``Gaussian process latent variable models for visualisation of
-  high dimensional data,'' in {\em Advances in neural information processing
-  systems}, pp.~329--336, 2004.
-
-\bibitem{lonnberg2017single}
-T.~L{\"o}nnberg, V.~Svensson, K.~R. James, D.~Fernandez-Ruiz, I.~Sebina,
-  R.~Montandon, M.~S. Soon, L.~G. Fogg, A.~S. Nair, U.~Liligeto, {\em et~al.},
-  ``Single-cell rna-seq and computational analysis using temporal mixture
-  modelling resolves th1/tfh fate bifurcation in malaria,'' {\em Science
-  immunology}, vol.~2, no.~9, 2017.
 
 \bibitem{welch2017manifold}
 J.~D. Welch, A.~J. Hartemink, and J.~F. Prins, ``Manifold alignment reveals
