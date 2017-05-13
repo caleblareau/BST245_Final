@@ -1,5 +1,5 @@
 # BST245 Final 
-Caleb Lareau
+Caleb Lareau, submitted 11 May 2017
 
 ### presentation
 folder for generating HTML5 slides. Additionally, this is the folder where the analysis to generate figures takes place
